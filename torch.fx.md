@@ -7,7 +7,7 @@
 FX 是一个供开发者变换nn.Module实例的工具，主要包含3个组件：符号跟踪，中间表达，Python代码生成。这些组件的实际操作的一个演示：
 
 * 符号跟踪：以符号的方式执行 Python 代码。通过给 nn Module 提供伪值，并记录在伪值上涉及到的操作。  
-* 中间表达：符号跟踪期间记录操作的容器，包含一系列节点（Node），节点包含了输入（placeholder），调用点（call_function、call_module、call_method），返回值。
+* 中间表达：符号跟踪期间记录操作的容器，包含一系列节点（Node），节点包含了输入（placeholder），调用点（call_function、call_module、call_method），返回值。    
 Graph是FX中间表达中使用的主要数据结构，Graph包含Node。Graph is a data structure that represents a method on a GraphModule. 我们从Graph中可以得到3个信息：   
 1，method的输入：method的输入被指定为placeholder nodes     
 2，method里运行了哪些操作：get_attr, call_function, call_module, call_method     
