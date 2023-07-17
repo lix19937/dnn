@@ -42,9 +42,8 @@ BART/T5-like (也被称作序列到序列的 Transformer模型)
 |GPT-like   |  Decoder-only   | 自动回归 | 文本生成 | CTRL, GPT, GPT-2,Transformer XL  |    
 |BART/T5-like   |  Encoder-Decoder   | 序列到序列 | 摘要、翻译或生成性问答 | BART, mBART, Marian, T5  |     
 
-
-- ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `#c5f015`  
-- ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `#1589F0`  
+![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `#c5f015`    
+![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `#1589F0`  
 
 
 
