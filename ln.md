@@ -1,3 +1,9 @@
+## ln 的cuda实现
+*  two pass
+
+*  one pass
+
+*  welford    
 
 
 
@@ -40,3 +46,6 @@ print(output.shape)
 
 
 ```
+
+ref  https://changyaochen.github.io/welford/   
+
