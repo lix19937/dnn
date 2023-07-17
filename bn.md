@@ -3,7 +3,7 @@
 
 
 * in training    
-## bn can not fused in conv, has 4 learn paras, but LN has 2 ##  
+  ## bn can not fused in conv, has 4 learn paras, but LN has 2 ##  
 
 ```
 bn.running_mean, bn.running_var, bn.eps, bn.weight, bn.bias
