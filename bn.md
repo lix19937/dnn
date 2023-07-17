@@ -3,7 +3,7 @@
 
 
 * in training    
-bn not fused in conv,
+bn can not fused in conv  
 ```
 bn.running_mean, bn.running_var, bn.eps, bn.weight, bn.bias
 ```
