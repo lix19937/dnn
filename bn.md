@@ -6,7 +6,7 @@
   ## bn can not fused in conv, has 4 learn paras, but LN has 2 ##  
 
 ```
-bn.running_mean, bn.running_var, bn.eps, bn.weight, bn.bias
+  bn.running_mean, bn.running_var, bn.eps, bn.weight, bn.bias
 ```
 * in infer
 BN 比 LN 在inference的时候快，因为不需要计算 mean 和 variance，直接用 running mean 和 running variance, 同时 BN 可与conv 进行良好融合   
