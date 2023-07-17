@@ -8,6 +8,7 @@ import numpy as np
 # ref https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html  
 torch.manual_seed(0)
 
+# LN特别适合处理变长数据, 因为是对 hidden 维度做操作,和句子长度和batch大小无关   
 batch, sentence_length, embedding_dim = 2, 4, 3
 input = torch.randn(batch, sentence_length, embedding_dim)
 
@@ -36,5 +37,6 @@ input = torch.randn(2, 4, 3, 3)
 m = torch.nn.LayerNorm([4, 3, 3])
 output = m(input)
 print(output.shape)
+
 
 ```
