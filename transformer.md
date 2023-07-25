@@ -52,7 +52,7 @@ http://fancyerii.github.io/2019/03/09/transformer-illustrated/
 ## self_attention   
 对于pytorch 版本的 **torch.nn.MultiheadAttention** 有以下可学习参数      
 in_proj_weight (bias) 
-在 `use_separate_proj_weight=False` 情况下, 可以包含 qkv proj weight (bias), q_proj_weight (bias), k_proj_weight (bias), v_proj_weight (bias) 按照dim = 0进行堆叠的     
+在 `use_separate_proj_weight=False` 情况下, 可以包含 qkv proj weight (bias), 其中q_proj_weight (bias), k_proj_weight (bias), v_proj_weight (bias) 按照dim = 0进行堆叠的     
 在 `use_separate_proj_weight=True` 情况下, q_proj_weight (bias), k_proj_weight (bias), v_proj_weight (bias) 则是独立存在的     
 out_proj_weight (bias)    
 
