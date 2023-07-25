@@ -42,11 +42,34 @@ BART/T5-like (也被称作序列到序列的 Transformer模型)
 |GPT-like   |  Decoder-only   | 自动回归 | 文本生成 | CTRL, GPT, GPT-2,Transformer XL  |    
 |BART/T5-like   |  Encoder-Decoder   | 序列到序列 | 摘要、翻译或生成性问答 | BART, mBART, Marian, T5  |     
 
-    
-    
- 
 
 
+ref 
+https://huggingface.co/learn/nlp-course/chapter1/2?fw=pt   
+http://fancyerii.github.io/2019/03/09/transformer-illustrated/   
 
-ref https://huggingface.co/learn/nlp-course/chapter1/2?fw=pt   
-    http://fancyerii.github.io/2019/03/09/transformer-illustrated/   
+
+## self_attention   
+对于pytorch 版本的torch.nn.MultiheadAttention 
+有以下可学习参数  
+in_proj_weight (bias) 在 `use_separate_proj_weight=False` 情况下, 可以包含 qkv proj weight (bias), q_proj_weight (bias), k_proj_weight (bias), v_proj_weight (bias) 按照dim = 0进行堆叠的 在 `use_separate_proj_weight=True` 情况下, q_proj_weight (bias), k_proj_weight (bias), v_proj_weight (bias) 则是独立存在的   
+out_proj_weight (bias)
+
+```
+in_proj_weight
+tensor([[ 0,  1],
+        [ 2,  3],
+        [ 4,  5],
+        [ 6,  7],
+        [ 8,  9],
+        [10, 11]])
+w_q
+    tensor([[0, 1],
+           [2, 3]])
+w_k
+    tensor([[4, 5],
+           [6, 7]])
+w_v
+     tensor([[ 8,  9],
+            [10, 11]])
+```          
