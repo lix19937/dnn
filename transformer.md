@@ -75,5 +75,7 @@ w_v
             [10, 11]])
 ```
 
+batch_first=False  
+
 ![pt_self_atten](https://github.com/lix19937/pytorch-cookbook/assets/38753233/a604e323-f163-4209-b3fd-ee5c59248b3b)
 
