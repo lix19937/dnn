@@ -28,8 +28,8 @@ https://github.com/wangyueft/detr3d
 * backbone   
   |模块| 作用|    
   |---|----|    
-  |csp+darknet53|Feature Learning |       
-  |FPN| multi-scale features provide rich information to recognize objects of different sizes|         
+  |csp+darknet53|Feature Learning, 输出给FPN |       
+  |FPN| Multi-scale features provide rich information to recognize objects of different sizes, 4个不同尺度(H,W)特征图|         
 
 * transformer decoder
   特征层面实现2D到3D的转换   
