@@ -1,4 +1,3 @@
-##  svod  
 
 * ref detr3d  
 https://arxiv.org/abs/2110.06922  
