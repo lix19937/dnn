@@ -36,14 +36,21 @@ https://github.com/wangyueft/detr3d
 * transformer decoder
   `特征层面实现2D到3D的转换`       
   用于从相机输入检测对象的现有方法通常采用自下而上的方法，其预测每个图像的密集边界框集合、过滤图像之间的冗余框，并且在后处理步骤中聚合跨相机的预测。这种模式有两个缺点：密集边界框预测需要精确的深度感知，而深度感知本身就是一种具有挑战性的问题；基于NMS的冗余删除和合并是不可并行的引入大量推理开销的操作。这里使用`自上而下`的方法来解决这些问题   
+![model-detr3d](https://github.com/lix19937/pytorch-cookbook/assets/38753233/7b256cca-adfe-4d1f-8243-539eb5020d28)    
 
 * head    
-
+  输出通过两个分支，回归bbox信息和分类目标类别
+  
 * 优化点   
   transformer decoder 结构  
   注意:这里的token 只有一个 因此没有kv_cache    
   
   如果是 gpt 类生成模型,输入的token往往很多,因此需要kv_cache    
   https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py  
+
+
+## REF  
+https://zhuanlan.zhihu.com/p/587380480   
+https://zhuanlan.zhihu.com/p/499795161   
 
  
