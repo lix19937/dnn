@@ -19,7 +19,7 @@ https://github.com/wangyueft/detr3d
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
   |image| (6,3,288,480)| int32 |   |   
-  |vehicle2img| (6,4,4) or (6,3,4)| fp32 | 6个相机参数矩阵 [3, 4] 可以padding一行, 凑成方阵  |     
+  |vehicle2img| (6,4,4) or (6,3,4)| fp32 | 相机参数矩阵[3, 4]可以padding一行[4, 4] , 凑成方阵, 共6个|     
 
 
 * 数据预处理  
