@@ -1,20 +1,19 @@
+--------------------------   
+detr https://arxiv.org/pdf/2005.12872.pdf
+![detr](https://github.com/lix19937/pytorch-cookbook/assets/38753233/10aca5e6-a62e-478d-b4bd-16e1a79f1be5)
+![detr-detailed](https://github.com/lix19937/pytorch-cookbook/assets/38753233/1f3a29f1-62bf-404c-b354-b42dea11caff)   
+
+a `CNN backbone` to extract a compact feature representation, an `encoder-decoder transformer`, and a simple `feed forward network (FFN)` that makes the final detection prediction.
+
+---------------------------   
+detr3d   
+![flow](https://github.com/lix19937/pytorch-cookbook/assets/38753233/3525dd0b-26c9-4e42-99eb-6cd62575d4b9)    
+
 
 * ref detr3d  
 https://arxiv.org/abs/2110.06922  
 https://github.com/wangyueft/detr3d       
 多摄像头检测目标，输出为BEV视角下的目标框,   cnn (csp+darknet53, yolox used)   + transformer
-
-  --------------------------   
-  detr https://arxiv.org/pdf/2005.12872.pdf
-  ![detr](https://github.com/lix19937/pytorch-cookbook/assets/38753233/10aca5e6-a62e-478d-b4bd-16e1a79f1be5)
-  ![detr-detailed](https://github.com/lix19937/pytorch-cookbook/assets/38753233/1f3a29f1-62bf-404c-b354-b42dea11caff)   
-  
-  a `CNN backbone` to extract a compact feature representation, an `encoder-decoder transformer`, and a simple `feed forward network (FFN)` that makes the final detection prediction.
-
-  ---------------------------   
-  detr3d   
-  ![flow](https://github.com/lix19937/pytorch-cookbook/assets/38753233/3525dd0b-26c9-4e42-99eb-6cd62575d4b9)    
-
 
 * 输入       
   |名称|shape|类型|其他 |    
