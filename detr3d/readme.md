@@ -31,7 +31,10 @@ https://github.com/wangyueft/detr3d
   csp+darknet53: Feature Learning   
   FPN: multi-scale features provide rich information to recognize objects of different sizes.    
 
-* head   
+* head
+用于从相机输入检测对象的现有方法通常采用自下而上的方法，其预测每个图像的密集边界框集合、过滤图像之间的冗余框，并且在后处理步骤中聚合跨相机的预测。这种模式有两个缺点：密集边界框预测需要精确的深度感知，而深度感知本身就是一种
+具有挑战性的问题；基于NMS的冗余删除和合并是不可并行的引入大量推理开销的操作。这里使用`自上而下`的方法来解决这些问题   
+
 transformer decoder
 
 
