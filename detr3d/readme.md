@@ -1,3 +1,5 @@
+##  svod  
+
 * ref detr3d    
 多摄像头检测目标，输出为BEV视角下的目标框,   cnn (csp+darknet53, yolox used)   + transformer
 
