@@ -26,10 +26,10 @@ https://github.com/wangyueft/detr3d
 
 
 * backbone   
-csp+darknet53 + FPN   
-
-csp+darknet53: Feature Learning   
-FPN: multi-scale features provide rich information to recognize objects of different sizes.    
+  csp+darknet53 + FPN   
+  
+  csp+darknet53: Feature Learning   
+  FPN: multi-scale features provide rich information to recognize objects of different sizes.    
 
 * head   
 transformer decoder
