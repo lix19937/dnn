@@ -5,11 +5,12 @@ https://arxiv.org/abs/2110.06922
 https://github.com/wangyueft/detr3d       
 多摄像头检测目标，输出为BEV视角下的目标框,   cnn (csp+darknet53, yolox used)   + transformer
 
-* 输入    
+* 输入
+  
 |名称|shape|类型|其他 |    
 |---|---|---|---|     
-|image| (6,3,288,480)| int32|   |   
-|vehicle2img| ((6,4,4))| fp32|   |     
+|image| (6,3,288,480)| int32 |   |   
+|vehicle2img| ((6,4,4))| fp32 |   |     
 
 
 * 数据预处理  
