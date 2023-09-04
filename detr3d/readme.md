@@ -4,6 +4,8 @@ https://arxiv.org/abs/2110.06922
 https://github.com/wangyueft/detr3d       
 多摄像头检测目标，输出为BEV视角下的目标框,   cnn (csp+darknet53, yolox used)   + transformer
 
+![flow](https://github.com/lix19937/pytorch-cookbook/assets/38753233/3525dd0b-26c9-4e42-99eb-6cd62575d4b9)    
+
 * 输入       
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
