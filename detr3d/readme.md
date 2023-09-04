@@ -13,7 +13,7 @@ detr3d
 * ref detr3d  
 https://arxiv.org/abs/2110.06922  
 https://github.com/wangyueft/detr3d       
-多摄像头检测目标，输出为BEV视角下的目标框,   cnn (csp+darknet53, yolox used) +  FPN   + transformer
+多摄像头检测目标，输出为BEV视角下的目标框,   cnn (csp+darknet53, yolox used) +  FPN  + transformer
 
 * 输入       
   |名称|shape|类型|其他 |    
@@ -27,6 +27,9 @@ https://github.com/wangyueft/detr3d
 
 * backbone   
 csp+darknet53 + FPN   
+
+csp+darknet53: Feature Learning   
+FPN: multi-scale features provide rich information to recognize objects of different sizes.    
 
 * head   
 transformer decoder
