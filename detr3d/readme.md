@@ -13,13 +13,13 @@ detr3d
 * ref detr3d  
 https://arxiv.org/abs/2110.06922  
 https://github.com/wangyueft/detr3d       
-多摄像头检测目标，输出为BEV视角下的目标框, no point clouds   cnn (csp+darknet53, yolox used) +  FPN  + transformer
+多摄像头检测目标，输出为BEV视角下的目标框, no point clouds, cnn (csp+darknet53, yolox used) +  FPN  + transformer
 
 * 输入       
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
   |image| (6,3,288,480)| int32 |   |   
-  |vehicle2img| (6,4,4)| fp32 |   |     
+  |vehicle2img| (6,4,4) or (6,3,4)| fp32 | 6个相机参数矩阵 [3, 4] 可以padding一行, 凑成方阵  |     
 
 
 * 数据预处理  
@@ -31,12 +31,12 @@ https://github.com/wangyueft/detr3d
   csp+darknet53: Feature Learning   
   FPN: multi-scale features provide rich information to recognize objects of different sizes.    
 
-* head
-用于从相机输入检测对象的现有方法通常采用自下而上的方法，其预测每个图像的密集边界框集合、过滤图像之间的冗余框，并且在后处理步骤中聚合跨相机的预测。这种模式有两个缺点：密集边界框预测需要精确的深度感知，而深度感知本身就是一种
-具有挑战性的问题；基于NMS的冗余删除和合并是不可并行的引入大量推理开销的操作。这里使用`自上而下`的方法来解决这些问题   
+* transformer decoder
+  特征层面实现2D到3D的转换   
+  用于从相机输入检测对象的现有方法通常采用自下而上的方法，其预测每个图像的密集边界框集合、过滤图像之间的冗余框，并且在后处理步骤中聚合跨相机的预测。这种模式有两个缺点：密集边界框预测需要精确的深度感知，而深度感知本身就是一种
+  具有挑战性的问题；基于NMS的冗余删除和合并是不可并行的引入大量推理开销的操作。这里使用`自上而下`的方法来解决这些问题   
 
-transformer decoder
-
+* head    
 
 * 优化点   
   transformer decoder 结构  
