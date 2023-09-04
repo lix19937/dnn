@@ -9,7 +9,7 @@ https://github.com/wangyueft/detr3d
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
   |image| (6,3,288,480)| int32 |   |   
-  |vehicle2img| ((6,4,4))| fp32 |   |     
+  |vehicle2img| (6,4,4)| fp32 |   |     
 
 
 * 数据预处理  
