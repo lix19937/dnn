@@ -10,13 +10,12 @@ detr3d
 ![flow](https://github.com/lix19937/pytorch-cookbook/assets/38753233/3525dd0b-26c9-4e42-99eb-6cd62575d4b9)    
 
 
-* ref detr3d  
+* detr3d概要    
 https://arxiv.org/abs/2110.06922  
 https://github.com/wangyueft/detr3d       
 多摄像头检测目标，输出为BEV视角下的目标框, no point clouds, cnn (csp+darknet53, yolox used) +  FPN  + transformer
 
-  DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用于室内机器人、监控摄像头的物体检测。 DETR3D不依赖视觉深度预测，直接在3D中进行检测，其次，DETR3D算法针对多个相机作为整体进行检测，无需后处理、相机间的跟踪、相机融合。而其他的视觉监测算法大多使用NMS去除冗余三维检测框，这给算法增加了计算复杂度。  
-
+  DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用于室内机器人、监控摄像头的物体检测。 DETR3D`不依赖视觉深度预测`，直接在3D中进行检测，其次，DETR3D算法针对多个相机作为整体进行检测，`无需后处理(如NMS去除冗余三维检测框)、相机间的跟踪、相机融合`。  
 * 输入       
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
@@ -33,7 +32,7 @@ https://github.com/wangyueft/detr3d
 
 
 * 数据预处理  
-
+  RGB  (x-mean)/std   
 
 * backbone   
   |模块| 作用|    
@@ -47,14 +46,15 @@ https://github.com/wangyueft/detr3d
 ![model-detr3d](https://github.com/lix19937/pytorch-cookbook/assets/38753233/7b256cca-adfe-4d1f-8243-539eb5020d28)    
 
 * head    
-  输出通过两个分支，回归bbox信息和分类目标类别
+  输出通过两个分支，`回归bbox信息`和`分类目标类别`    
   
-* 优化点   
-  transformer decoder 结构  
-  注意:这里的token 只有一个 因此没有kv_cache    
+* 优化点
+  * backbone focus结构替换   
+  * transformer decoder结构手写layer     
+    注意:这里的token 只有一个 因此没有kv_cache    
   
-  如果是 gpt 类生成模型,输入的token往往很多,因此需要kv_cache    
-  https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py  
+  如果是[gpt](https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py)类生成模型,输入的token往往很多,因此需要kv_cache,对于时序detr3d则需要考虑         
+       
 
 
 ## REF  
