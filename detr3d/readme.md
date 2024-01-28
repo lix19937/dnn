@@ -35,7 +35,7 @@ https://github.com/wangyueft/detr3d
 * 数据预处理  
   RGB  (x-mean)/std   
 
-* backbone   
+* backbone + neck     
   |模块| 作用|    
   |---|----|    
   |csp+darknet53|Feature Learning, 输出给FPN |       
