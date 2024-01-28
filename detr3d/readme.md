@@ -32,7 +32,8 @@ https://github.com/WangYueFt/detr3d/blob/main/projects/configs/detr3d/detr3d_vov
   |score| (1,512,12) | fp32 |512是query num, 12是检测类别数 |
   
   ![out](https://github.com/lix19937/pytorch-cookbook/assets/38753233/56209a1f-cfe4-4de4-ac76-f06e528e7f57)
-
+  
+---------------------------------
 
 * 数据预处理  
   RGB  (x-mean)/std   
