@@ -39,7 +39,7 @@ a `CNN backbone` to extract a compact feature representation, an `encoder-decode
 * backbone + neck     
   |模块| 作用|    
   |---|----|    
-  |csp+darknet53|Feature Learning, 输出给FPN |       
+  |csp+darknet53|Feature Learning, 输出给FPN (特征金字塔) |       
   |FPN| Multi-scale features provide rich information to recognize objects of different sizes<br>4个不同尺度(H,W)特征图<br>72x184<br>36x92<br>18x46<br>9x23|         
 
 * transformer decoder
