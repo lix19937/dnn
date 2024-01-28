@@ -49,9 +49,11 @@ a `CNN backbone` to extract a compact feature representation, an `encoder-decode
 ![model-detr3d](https://github.com/lix19937/pytorch-cookbook/assets/38753233/7b256cca-adfe-4d1f-8243-539eb5020d28)    
 
 * head    
-  输出通过两个分支，`回归bbox信息`和`分类目标类别`    
+  输出通过两个分支，`回归bbox信息`和`分类目标类别`
   
-* 优化点
+-------  
+
+* **优化点**  
   * backbone focus结构替换, maxpool后融合    
   * transformer decoder结构手写layer     
     注意:这里的token 只有一个 因此没有kv_cache    
