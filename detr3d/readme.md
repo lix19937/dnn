@@ -50,7 +50,7 @@ https://github.com/wangyueft/detr3d
   输出通过两个分支，`回归bbox信息`和`分类目标类别`    
   
 * 优化点
-  * backbone focus结构替换   
+  * backbone focus结构替换   maxpool后融合    
   * transformer decoder结构手写layer     
     注意:这里的token 只有一个 因此没有kv_cache    
   
