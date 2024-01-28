@@ -5,6 +5,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from loguru import logger
+
+# we use this version !!! 
 # import sys
 # sys.path[0] = "/home/igs/seg_train_nfs/seg/pytorch-quantization-v2.1.0"
 
@@ -133,9 +135,9 @@ class ResBlock(nn.Module):
         else:
             self.dropout = nn.Dropout2d(p=dropout_rate)
 
-        self.quantize = quantize
-        if self.quantize: 
-            self.residual_quantizer = quant_nn.TensorQuantizer(quant_nn.QuantConv2d.default_quant_desc_input)
+        # self.quantize = quantize
+        # if self.quantize: 
+        #     self.residual_quantizer = quant_nn.TensorQuantizer(quant_nn.QuantConv2d.default_quant_desc_input)
 
 
     def forward(self, x):
@@ -219,8 +221,8 @@ class UpBlock(nn.Module):
         self.bn4 = nn.BatchNorm2d(out_filters)
         self.dropout3 = nn.Dropout2d(p=dropout_rate)
         self.quantize = quantize
-        if self.quantize: 
-            self.residual_quantizer = quant_nn.TensorQuantizer(quant_nn.QuantConv2d.default_quant_desc_input)
+        # if self.quantize: 
+        #     self.residual_quantizer = quant_nn.TensorQuantizer(quant_nn.QuantConv2d.default_quant_desc_input)
         self.ps = nn.PixelShuffle(2)
 
     def forward(self, x, skip):

@@ -1,12 +1,12 @@
-conda  create -n lidar_seg
+conda  create -n lidar_seg     
 
-conda activate lidar_seg
+conda activate lidar_seg    
 
-cd seg/pytorch-quantization_v2.1.2
+cd seg/pytorch-quantization_v2.1.2    
 
-python3 setup.py install --prefix=./site-packages
+python3 setup.py install --prefix=./site-packages    
 
-conda deactivate
+conda deactivate      
 
 
 # mount
@@ -17,10 +17,8 @@ cd  /Data/ljw/seg_train_nfs/seg/source
 conda activate CenterNet
 
 
-# (CenterNet) nvidia@SSADL3816:/Data/ljw/seg_train_nfs/seg/source$
-10.95.61.56:/data/softwares/seg_train_nfs  1.8T  202G  1.6T  12% /Data/ljw/seg_train_nfs
-
-
+# (CenterNet) nvidia@SSADL3816:/Data/ljw/seg_train_nfs/seg/source$   
+10.95.61.56:/data/softwares/seg_train_nfs  1.8T  202G  1.6T  12% /Data/ljw/seg_train_nfs     
 
 (centerpoint) root@SSADL3816:~/nv_centerpoint/CenterPoint#    
 ```
