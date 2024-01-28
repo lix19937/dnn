@@ -12,13 +12,10 @@ a `CNN backbone` to extract a compact feature representation, an `encoder-decode
 
 
 * detr3d概要    
-https://arxiv.org/abs/2110.06922  
-https://github.com/wangyueft/detr3d       
-多摄像头检测目标，输出为BEV视角下的目标框, no point clouds, cnn (csp+darknet53, yolox used) +  FPN  + transformer
-
-https://github.com/WangYueFt/detr3d/blob/main/projects/configs/detr3d/detr3d_vovnet_gridmask_det_final_trainval_cbgs.py
-
-  DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用于室内机器人、监控摄像头的物体检测。 DETR3D`不依赖视觉深度预测`，直接在3D中进行检测，其次，DETR3D算法针对多个相机作为整体进行检测，`无需后处理(如NMS去除冗余三维检测框)、相机间的跟踪、相机融合`。  
+> https://arxiv.org/abs/2110.06922  
+> https://github.com/wangyueft/detr3d       
+> 多摄像头检测目标，输出为BEV视角下的目标框, 无点云, 仅以 cnn (csp+darknet53, yolox used) +  FPN  + transformer         > https://github.com/WangYueFt/detr3d/blob/main/projects/configs/detr3d/detr3d_vovnet_gridmask_det_final_trainval_cbgs.py
+> DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用于室内机器人、监控摄像头的物体检测。 DETR3D`不依赖视觉深度预测`，直接在3D中进行检测，其次，DETR3D算法针对多个相机作为整体进行检测，`无需后处理(如NMS去除冗余三维检测框)、相机间的跟踪、相机融合`。    
 * 输入       
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
