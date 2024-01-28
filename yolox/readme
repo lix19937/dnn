@@ -1,0 +1,11 @@
+
+conda  create -n mmdet2
+
+conda  activate mmdet2
+
+# install pytorch-quantization
+
+conda deactivate
+
+
+sudo mount -t nfs 10.95.61.56:/home/igs/fusion_se_sod_nfs   /Data/tet/fusion_se_sod_finetune
