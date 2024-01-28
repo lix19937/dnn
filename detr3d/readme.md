@@ -1,4 +1,4 @@
---------------------------   
+  
 # detr   
 > https://arxiv.org/pdf/2005.12872.pdf      
 ![detr](https://github.com/lix19937/pytorch-cookbook/assets/38753233/10aca5e6-a62e-478d-b4bd-16e1a79f1be5)
