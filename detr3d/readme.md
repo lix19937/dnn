@@ -36,7 +36,7 @@ https://github.com/WangYueFt/detr3d/blob/main/projects/configs/detr3d/detr3d_vov
 ---------------------------------
 
 * 数据预处理  
-  RGB  (x-mean)/std   
+  RGB色彩空间下  (x-mean)/std   
 
 * backbone + neck     
   |模块| 作用|    
