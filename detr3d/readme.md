@@ -41,7 +41,7 @@ https://github.com/WangYueFt/detr3d/blob/main/projects/configs/detr3d/detr3d_vov
   |模块| 作用|    
   |---|----|    
   |csp+darknet53|Feature Learning, 输出给FPN |       
-  |FPN| Multi-scale features provide rich information to recognize objects of different sizes, 4个不同尺度(H,W)特征图 <br>23, 46, 92, 184|         
+  |FPN| Multi-scale features provide rich information to recognize objects of different sizes, 4个不同尺度(H,W)特征图 <br>72x184<br>36x92<br>18x46<br>9x23|         
 
 * transformer decoder
   `特征层面实现2D到3D的转换`       
