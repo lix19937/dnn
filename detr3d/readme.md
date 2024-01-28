@@ -39,7 +39,7 @@ https://github.com/wangyueft/detr3d
   |模块| 作用|    
   |---|----|    
   |csp+darknet53|Feature Learning, 输出给FPN |       
-  |FPN| Multi-scale features provide rich information to recognize objects of different sizes, 4个不同尺度(H,W)特征图|         
+  |FPN| Multi-scale features provide rich information to recognize objects of different sizes, 4个不同尺度(H,W)特征图 <br>23, 46, 92, 184|         
 
 * transformer decoder
   `特征层面实现2D到3D的转换`       
