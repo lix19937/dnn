@@ -21,7 +21,7 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
   |image| (6,3,288,480)| fp32 |车体环视6相机的6张图片 c=3,h=288,w=480 <br><br>顺序<br> F120 <br> B70 <br> ARO233_BACK_RIGHT<br>ARO233_FRONT_RIGHT <br> ARO233_FRONT_LEFT <br> ARO233_BACK_LEFT |   
-  |vehicle2img| (6,4,4) or (6,3,4)| fp32 | 相机参数矩阵[3, 4]可以padding一行[4, 4], 凑成方阵, 共6个|     
+  |vehicle2img| (6,4,4) or (6,3,4)| fp32 | 相机参数矩阵[3, 4]可以padding一行[4, 4], 凑成方阵, 共6个<br>这里使用(6,4,4)|     
 
 * 输出
   |名称|shape|类型|其他 |    
