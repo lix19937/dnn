@@ -26,7 +26,7 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
 * 输出
   |名称|shape|类型|其他 |    
   |---|---|---|---|     
-  |bbox| (1,512,8)| fp32 |512是query num, 8是每一个bbox的坐标组成    |   
+  |bbox| (1,512,8)| fp32 |512是query num, 8是每一个bbox的属性组成 (bbox的坐标+长宽高+航向角+速度)   |   
   |score| (1,512,12) | fp32 |512是query num, 12是检测类别数 |
   
   ![out](https://github.com/lix19937/pytorch-cookbook/assets/38753233/56209a1f-cfe4-4de4-ac76-f06e528e7f57)
