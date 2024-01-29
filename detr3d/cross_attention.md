@@ -12,26 +12,20 @@
                 **kwargs):
         """Forward Function of SVDetCrossAtten.
         Args:
-            query (Tensor): Query of Transformer with shape                (num_query, bs, embed_dims).
+            query (Tensor): Query of Transformer with shape        `(num_query, bs, embed_dims)`.
             key (Tensor): The key tensor with shape                `(num_key, bs, embed_dims)`.
-            value (Tensor): The value tensor with shape                `(num_key, bs, embed_dims)`. (B, N, C, H, W)
+            value (Tensor): The value tensor with shape            `(num_key, bs, embed_dims)`. (B, N, C, H, W)
             residual (Tensor): The tensor used for addition, with the same shape as `x`. Default None. If None, `x` will be used.
             query_pos (Tensor): The positional encoding for `query`.    Default: None.
-            key_pos (Tensor): The positional encoding for `key`. Default  None.
+            key_pos (Tensor): The positional encoding for `key`.        Default: None.
             reference_points (Tensor):  The normalized reference
-                points with shape (bs, num_query, 4),
-                all elements is range in [0, 1], top-left (0,0),
+                points with shape (bs, num_query, 4), all elements is range in [0, 1], top-left (0,0),
                 bottom-right (1, 1), including padding area.
-                or (N, Length_{query}, num_levels, 4), add
-                additional two dimensions is (w, h) to
-                form reference boxes.
+                or (N, Length_{query}, num_levels, 4), add additional two dimensions is (w, h) to form reference boxes.
             key_padding_mask (Tensor): ByteTensor for `query`, with shape [bs, num_key].
-            spatial_shapes (Tensor): Spatial shape of features in
-                different level. With shape  (num_levels, 2),
-                last dimension represent (h, w).
+            spatial_shapes (Tensor): Spatial shape of features in different level. With shape  (num_levels, 2), last dimension represent (h, w).
             level_start_index (Tensor): The start index of each level.
-                A tensor has shape (num_levels) and can be represented
-                as [0, h_0*w_0, h_0*w_0+h_1*w_1, ...].
+                A tensor has shape (num_levels) and can be represented as [0, h_0*w_0, h_0*w_0+h_1*w_1, ...].
         Returns:
              Tensor: forwarded results with shape [num_query, bs, embed_dims].
         """
@@ -57,6 +51,7 @@
         reference_points_3d, output, mask = feature_sampling_onnx(value, reference_points, self.pc_range, kwargs['img_shape'], kwargs['lidar2img'])
 
         attention_weights = attention_weights.sigmoid() * mask
+
         output = output * attention_weights
         output = output.sum(-1).sum(-1).sum(-1)
         output = output.permute(2, 0, 1)
