@@ -58,7 +58,7 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
 
 * **优化点**  
   * backbone focus结构替换, maxpool后融合    
-  * transformer decoder结构手写layer     
+  * **transformer decoder**结构通过手写layer替换trt native实现          
     注意:这里的token 只有一个 因此没有kv_cache    
   
   如果是[gpt](https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py)类生成模型,输入的token往往很多,因此需要kv_cache,对于时序detr3d则需要考虑         
