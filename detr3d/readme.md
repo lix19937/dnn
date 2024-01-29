@@ -44,8 +44,8 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
   |csp+darknet53|Feature Learning, 输出给FPN (特征金字塔) |       
   |[FPN](fpn.md)| Multi-scale features provide rich information to recognize objects of different sizes<br>4个不同尺度(H,W)特征图<br>(72,184)<br>(36,92)<br>(18,46)<br>(9,23)|         
 
-* transformer decoder
-  `特征层面实现2D到3D的转换`          
+* transformer decoder       
+`特征层面实现2D到3D的转换`          
 用于从相机输入检测对象的现有方法通常采用`自下而上`的方法，其预测每个图像的密集边界框集合、过滤图像之间的冗余框，并且在后处理步骤中聚合跨相机的预测。    
 这种模式有两个缺点：密集边界框预测需要精确的深度感知，而深度感知本身就是一种具有挑战性的问题；
 基于NMS的冗余删除和合并是不可并行的引入大量推理开销的操作。这里使用`自上而下`的方法来解决这些问题。   
