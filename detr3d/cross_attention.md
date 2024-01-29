@@ -1,3 +1,5 @@
+![workflow](./decoder/workflow-full.png)      
+
 ```py
     def forward(self,
                 query,
