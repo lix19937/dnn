@@ -53,8 +53,9 @@ decoder的输入是经过fpn后的特征图，在特征层面实现2D到3D的转
 ![model-detr3d](https://github.com/lix19937/pytorch-cookbook/assets/38753233/7b256cca-adfe-4d1f-8243-539eb5020d28)    
 
 * head    
-  输出通过两个分支，`回归bbox信息`和`分类目标类别`
+输出通过两个分支，`回归bbox信息`和`分类目标类别`
   
+* loss: 采用DETR的set-to-set计算方式，对预测出的(回归, 分类)结果和GT的(回归, 分类)结果进行匹配。损失函数部分保持和DETR一致。回归损失采用L1，分类损失使用focal loss      
 -------  
 
 * **优化点**  
