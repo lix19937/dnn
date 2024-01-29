@@ -52,6 +52,8 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
 decoder的输入是经过fpn后的特征图，在特征层面实现2D到3D的转换，避免深度估计带来的误差，同时可以避免NMS等耗时的后处理操作。      
 ![model-detr3d](https://github.com/lix19937/pytorch-cookbook/assets/38753233/7b256cca-adfe-4d1f-8243-539eb5020d28)    
 
+decoder中核心模块在 cross attention，见(CA)[./cross_attention.md]  
+
 * head    
 输出通过两个分支，`回归bbox信息`和`分类目标类别`
   
