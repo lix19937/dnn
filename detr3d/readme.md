@@ -57,13 +57,13 @@ decoder中FPN的输出紧连cross attention，见[cross attention](./decoder/cro
 输出通过两个分支，`回归bbox信息`和`分类目标类别`
   
 * loss     
-采用detr 的set-to-set计算方式，对预测出的(回归, 分类)结果和GT的(回归, 分类)结果进行匹配。损失函数部分保持和 detr 一致。回归损失采用L1，分类损失使用focal loss      
+采用detr 的set-to-set计算方式，对预测出的(回归, 分类)结果和GT的(回归, 分类)结果进行匹配。损失函数部分保持和 detr 一致。回归损失采用L1，分类损失使用focal loss。      
 -------  
 
 * **优化点**  
   * backbone focus结构替换, maxpool后融合    
-  * **transformer decoder**结构通过手写插件替换trt native实现，具体内容https://github.com/lix19937/tensorrt-insight/tree/main/plugin/svt               
-    注意:这里的token 只有一个 因此没有kv_cache    
+  * **transformer decoder**结构通过手写插件替换trt native实现，具体内容可见https://github.com/lix19937/tensorrt-insight/tree/main/plugin/svt               
+    注意：这里的token 只有一个 因此没有kv_cache    
   * head 模块也融入到自定义插件中
     
   如果是[gpt](https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py)类生成模型,输入的token往往很多,因此需要kv_cache,对于时序detr3d则需要考虑         
