@@ -62,7 +62,7 @@ decoder中FPN的输出紧连cross attention，见[cross attention](./decoder/cro
 
 * **优化点**  
   * backbone focus结构替换, maxpool后融合    
-  * **transformer decoder**结构通过手写插件替换trt native实现          
+  * **transformer decoder**结构通过手写插件替换trt native实现，具体内容https://github.com/lix19937/tensorrt-insight/tree/main/plugin/svt               
     注意:这里的token 只有一个 因此没有kv_cache    
   * head 模块也融入到自定义插件中
     
