@@ -34,3 +34,8 @@ assert h == 1, 'the height of conv must be 1'
 这些特征向量序列就作为循环层的输入，每个特征向量作为 RNN 在一个时间步（time step）的输入。    
 
 ## rnn   
+
+## ctc loss  
+
+
+
