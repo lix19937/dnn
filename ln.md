@@ -36,8 +36,9 @@ output = m(input)
 mean = torch.mean(input, dim=(2), keepdim=True)
 var = torch.var(input, dim=(2), keepdim=True, unbiased=False)
 print(mean.shape)
+
 output_user = (input - mean) / ((var+1e-5)**0.5) * 1 + 0
-print(torch.max(torch.abs(output_user-output)))
+print(torch.max(torch.abs(output_user - output)))
 
 input = torch.randn(2, 4, 3, 3)
 m = torch.nn.LayerNorm([4, 3, 3])
