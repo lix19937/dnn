@@ -5,4 +5,4 @@
 # @Software: PyCharm
 from .yolo_head import YOLOXHead
 from .obb_head import OBBHead
-from .fcos_head import SAICHead
+from .fcos_head import Head

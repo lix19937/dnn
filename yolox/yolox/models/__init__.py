@@ -6,6 +6,6 @@
 from .backbone.darknet import CSPDarknet, Darknet
 from .backbone.yolo_fpn import YOLOFPN
 from .backbone.yolo_pafpn import YOLOPAFPN
-from .heads import YOLOXHead, SAICHead, OBBHead
+from .heads import YOLOXHead, Head, OBBHead
 from .losses import IOUloss
 from .yolox import YOLOX

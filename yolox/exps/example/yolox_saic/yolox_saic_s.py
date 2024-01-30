@@ -8,7 +8,7 @@ from torch.utils.data.sampler import BatchSampler
 
 from yolox.exp import Exp as MyExp
 from yolox.data import get_yolox_datadir, get_data_type
-from yolox.data import SAICDataset
+from yolox.data import Dataset
 
 
 class Exp(MyExp):
@@ -36,12 +36,12 @@ class Exp(MyExp):
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False, cache_img=False):
-        from yolox.data import SAICDataset, TrainTransform, DataLoader, InfiniteSampler, worker_init_reset_seed
+        from yolox.data import Dataset, TrainTransform, DataLoader, InfiniteSampler, worker_init_reset_seed
         from yolox.utils import wait_for_the_master, get_local_rank
         local_rank = get_local_rank()
 
         with wait_for_the_master(local_rank):
-            dataset = SAICDataset(data_dir=get_yolox_datadir(), img_size=self.input_size, preproc=TrainTransform(max_labels=50, flip_prob=self.flip_prob, mean_std=self.mean_std))
+            dataset = Dataset(data_dir=get_yolox_datadir(), img_size=self.input_size, preproc=TrainTransform(max_labels=50, flip_prob=self.flip_prob, mean_std=self.mean_std))
 
         self.dataset = dataset
 
@@ -60,7 +60,7 @@ class Exp(MyExp):
     def get_eval_loader(self, batch_size, is_distributed, testdev=False, legacy=False):
         from yolox.data import ValTransform
 
-        valdataset = SAICDataset(data_dir=get_yolox_datadir(), name='val', img_size=self.test_size, preproc=ValTransform(), )
+        valdataset = Dataset(data_dir=get_yolox_datadir(), name='val', img_size=self.test_size, preproc=ValTransform(), )
 
         if is_distributed:
             batch_size = batch_size // dist.get_world_size()

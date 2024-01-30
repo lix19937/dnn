@@ -14,24 +14,24 @@ from pycocotools.coco import COCO
 from ..dataloading import get_yolox_datadir
 from .datasets_wrapper import Dataset
 
-from .saic_classes import SAIC_CLASSES
+from .saic_classes import _CLASSES
 from yolox.data.transforms import obb2poly_np_pure_oc
 
 DEBUG = bool(int(os.getenv('DEBUG', 0)))
 
 
-class SAICDataset(Dataset):
+class Dataset(Dataset):
     """
-    SAIC dataset class.
+     dataset class.
     """
 
     def __init__(self, data_dir=None, image_type='height', name="train", img_size=(416, 416), preproc=None, cache=False):
         """
-        SAIC dataset initialization.
+         dataset initialization.
         Args:
             data_dir (str): dataset root directory
             data_type(str): data type (e.g. 'height', 'snr' or 'full')
-            name (str): SAIC data name (e.g. 'train2017' or 'val2017')
+            name (str):  data name (e.g. 'train2017' or 'val2017')
             img_size (int): target image size after pre-processing
             preproc: data augmentation strategy
         """
@@ -40,7 +40,7 @@ class SAICDataset(Dataset):
 
         self.name = name
 
-        self.class_to_ind = dict(zip(SAIC_CLASSES, range(len(SAIC_CLASSES))))
+        self.class_to_ind = dict(zip(_CLASSES, range(len(_CLASSES))))
         self.data_dir = data_dir
         self.img_dir = os.path.join(data_dir, name, 'image_%s' % image_type)
         self.label_dir = os.path.join(data_dir, name, 'label')

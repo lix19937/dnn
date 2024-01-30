@@ -15,7 +15,7 @@ import torch
 sys.path.append('.')
 
 from yolox.data.data_augment import ValTransform
-from yolox.data.datasets import SAIC_CLASSES
+from yolox.data.datasets import _CLASSES
 from yolox.exp import get_exp
 from yolox.utils import fuse_model, get_model_info, obbpostprocess, obb_vis
 
@@ -62,7 +62,7 @@ def get_image_list(path):
 from polygraphy.backend.trt import EngineFromBytes, TrtRunner 
 from polygraphy.backend.common import BytesFromPath
 class Predictor(object):
-    def __init__(self, model, exp, cls_names=SAIC_CLASSES, trt_file=None, decoder=None, device="gpu", fp16=False):
+    def __init__(self, model, exp, cls_names=_CLASSES, trt_file=None, decoder=None, device="gpu", fp16=False):
         self.model = model
         self.cls_names = cls_names
         self.decoder = decoder

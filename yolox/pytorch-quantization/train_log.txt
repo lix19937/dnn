@@ -129,7 +129,7 @@ Traceback (most recent call last):
     └ <yolox.core.trainer.Trainer object at 0x7f1d163bc3a0>
 
   File "/Data/tet/fusion_se_sod/exps/example/yolox_obb/yolox_obb_s.py", line 46, in get_data_loader
-    dataset = SAICDataset(data_dir=get_yolox_datadir(), image_type=self.image_type, img_size=self.input_size, preproc=TrainTransform(max_labels=50, flip_prob=self.flip_prob, mean_std=self.mean_std))
+    dataset = Dataset(data_dir=get_yolox_datadir(), image_type=self.image_type, img_size=self.input_size, preproc=TrainTransform(max_labels=50, flip_prob=self.flip_prob, mean_std=self.mean_std))
               │                    │                               │    │                    │    │                   │                                       │    │                   │    └ {'mean': [127, 107, 153], 'std': [56.5115, 29.692, 49.4464]}
               │                    │                               │    │                    │    │                   │                                       │    │                   └ ╒═══════════════════╤════════════════════════════════════════════════════════════════════════════════════════════════════════...
               │                    │                               │    │                    │    │                   │                                       │    └ 0.5
@@ -140,15 +140,15 @@ Traceback (most recent call last):
               │                    │                               │    └ 'height'
               │                    │                               └ ╒═══════════════════╤════════════════════════════════════════════════════════════════════════════════════════════════════════...
               │                    └ <function get_yolox_datadir at 0x7f1d163baca0>
-              └ <class 'yolox.data.datasets.saic.SAICDataset'>
+              └ <class 'yolox.data.datasets.saic.Dataset'>
 
   File "/Data/tet/fusion_se_sod/./yolox/data/datasets/saic.py", line 47, in __init__
     self.label_files = os.listdir(self.label_dir)
     │                  │  │       │    └ './datasets/train/label'
-    │                  │  │       └ <yolox.data.datasets.saic.SAICDataset object at 0x7f1d0c6fcca0>
+    │                  │  │       └ <yolox.data.datasets.saic.Dataset object at 0x7f1d0c6fcca0>
     │                  │  └ <built-in function listdir>
     │                  └ <module 'os' from '/home/nvidia/.conda/envs/mmdet2/lib/python3.9/os.py'>
-    └ <yolox.data.datasets.saic.SAICDataset object at 0x7f1d0c6fcca0>
+    └ <yolox.data.datasets.saic.Dataset object at 0x7f1d0c6fcca0>
 
 FileNotFoundError: [Errno 2] No such file or directory: './datasets/train/label'
 2022-10-26 23:17:51.194 | INFO     | yolox.core.trainer:before_train:112 - args: Namespace(experiment_name='yolox_obb_s', name=None, dist_backend='nccl', dist_url=None, batch_size=8, devices=1, exp_file='exps/example/yolox_obb/yolox_obb_s.py', resume=False, ckpt=None, start_epoch=None, num_machines=1, machine_rank=0, fp16=False, cache=False, occupy=False, logger='tensorboard', opts=[])

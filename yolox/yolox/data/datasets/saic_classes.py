@@ -4,6 +4,6 @@
 # @File    : saic_classes.py
 # @Software: PyCharm
 
-SAIC_CLASSES = (
+_CLASSES = (
     "large-vehicle",
 )

@@ -19,7 +19,7 @@ from yolox.utils.post_processing import multiclass_nms_rotated
 INF = 1e8
 
 
-class SAICHead(nn.Module):
+class Head(nn.Module):
     def __init__(self, num_classes=1, width=1.0, strides=None, in_channels=None, act='silu', angle_version='oc', demo_cfg=None):
         super().__init__()
 

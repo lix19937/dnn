@@ -115,7 +115,7 @@ class Exp(BaseExp):
     def get_model(self, head_type='saic'):
         from yolox.models import YOLOX, YOLOPAFPN
         if head_type == 'saic':
-            from yolox.models import SAICHead as Head
+            from yolox.models import Head as Head
         elif head_type == 'obb':
             from yolox.models import OBBHead as Head
         else:
