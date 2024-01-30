@@ -1,4 +1,4 @@
-![workflow](./decoder/workflow-full.png)      
+![workflow](./workflow-full.png)      
 
 ```py
     def forward(self,
