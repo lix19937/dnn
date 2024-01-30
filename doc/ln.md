@@ -37,6 +37,7 @@ mean = torch.mean(input, dim=(2), keepdim=True)
 var = torch.var(input, dim=(2), keepdim=True, unbiased=False)
 print(mean.shape)
 
+# 注意torch.var https://discuss.pytorch.org/t/torch-var-and-torch-std-return-nan/38884/2   
 output_user = (input - mean) / ((var+1e-5)**0.5) * 1 + 0
 print(torch.max(torch.abs(output_user - output)))
 
