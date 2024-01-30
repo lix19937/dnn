@@ -1,9 +1,9 @@
 ![bn](https://github.com/lix19937/pytorch-cookbook/assets/38753233/cdd3e4dc-bd61-4402-87f7-f2e6001cb3f9)    
 
-
+BN 是所有batch的同一通道的内容先求mean 和 std    
 
 * in training    
-  ## bn can not fused in conv, has 4 learn paras, but LN has 2 ##  
+  ## BN can not fused in conv, has 4 learn paras, but LN has 2 ##  
 
 ```
   bn.running_mean, bn.running_var, bn.eps, bn.weight, bn.bias
