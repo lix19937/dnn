@@ -8,7 +8,7 @@ a `CNN backbone` to extract a compact feature representation, an `encoder-decode
 
 ---------------------------   
 # detr3d      
-> https://arxiv.org/abs/2110.06922  
+> https://arxiv.org/abs/2110.06922    MIT wangyue 等提出的    
 https://github.com/wangyueft/detr3d       
 多摄像头检测目标，输出为BEV视角下的目标框, 无点云, 仅以 cnn (csp+darknet53, yolox used) +  FPN  + transformer
 https://github.com/WangYueFt/detr3d/blob/main/projects/configs/detr3d/detr3d_vovnet_gridmask_det_final_trainval_cbgs.py    
