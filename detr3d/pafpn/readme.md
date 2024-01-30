@@ -1,1 +1,1 @@
-![pafpn](pafpn.png)    
+![pafpn](pafpn.jpg)    
