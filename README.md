@@ -14,5 +14,4 @@
 [cs231-cnn](https://cs231n.github.io/convolutional-networks/)   
 [cs231-index](https://cs231n.github.io/assets/conv-demo/index.html)     
 
-损失函数分布可视化     
-https://losslandscape.com/explorer     
+[损失函数分布可视化](https://losslandscape.com/explorer)           
