@@ -69,7 +69,7 @@ decoder中FPN的输出紧连cross attention（注意不是紧连MHA），见[cro
   如果是[gpt](https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py)类生成模型,输入的token往往很多,因此需要kv_cache,对于时序detr3d则需要考虑         
        
 
-## REF  
+## Ref      
 https://zhuanlan.zhihu.com/p/587380480   
 https://zhuanlan.zhihu.com/p/499795161   
 
