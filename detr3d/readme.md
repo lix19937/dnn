@@ -1,6 +1,6 @@
 ## 目录   
 - [detr](#detr )     
-- [detr3d](#detre3d )     
+- [detr3d](#detr3d )     
   
 # detr   
 > https://arxiv.org/pdf/2005.12872.pdf  Facebook 提出的       
