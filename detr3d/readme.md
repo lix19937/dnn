@@ -65,10 +65,11 @@ decoder中FPN的输出紧连cross attention（注意不是紧连MHA），见[cro
 -------  
 
 * **优化点**  
-  * backbone focus结构替换, maxpool后融合    
+  * backbone focus结构替换
+  * fpn的maxpool后融合至插件中         
   * **transformer decoder**结构通过手写插件替换trt native实现，具体内容可见[svt](https://github.com/lix19937/tensorrt-insight/tree/main/plugin/svt)               
     注意：这里的token 只有一个 因此没有kv_cache    
-  * head 模块也融入到自定义插件中
+  * head 模块也融入到自定义插件中     
     
   如果是[gpt](https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py)类生成模型,输入的token往往很多,因此需要kv_cache,对于时序detr3d则需要考虑         
        
