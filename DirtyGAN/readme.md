@@ -94,3 +94,6 @@ z=νz1+(1−ν)z2
 ![6](img/ds-dc.png)   
 
 
+CycleGAN    
+https://github.com/yunjey/mnist-svhn-transfer/tree/master   
+
