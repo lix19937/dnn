@@ -52,7 +52,7 @@ https://github.com/valeoai/woodscape
 基于弱多边形annotation WoodScape 数据集   
 ![3](img/3.png)    
 
-尽管annotation相当粗糙，但分割网络 M 能够更精确地适应污染模式。     
+尽管弱多边形annotation相当粗糙，但分割网络 M 能够更精确地适应污染模式。     
 ![4](img/4.png)    
 
 我们使用 WoodScape 数据集来训练污染分割网络。我们训练了一个超分辨率网络 U，我们用它将 GAN 生成的图像转换为原始图像分辨率（即，上采样的 4× 因子）。       
