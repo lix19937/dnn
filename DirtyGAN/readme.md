@@ -111,6 +111,17 @@ z=νz1+(1−ν)z2
 ![6](img/ds-dc.png)   
 
 
++ 输入
+
+  |||
+  |---|---|    
+  |||   
+
++ 输出    
+  |||
+  |---|---|    
+  |||
+  
 CycleGAN    
 https://github.com/yunjey/mnist-svhn-transfer/tree/master   
 
