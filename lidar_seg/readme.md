@@ -1,3 +1,4 @@
+```
 conda  create -n lidar_seg     
 
 conda activate lidar_seg    
@@ -7,7 +8,7 @@ cd seg/pytorch-quantization_v2.1.2
 python3 setup.py install --prefix=./site-packages    
 
 conda deactivate      
-
+```
 
 # mount
 sudo mount -t nfs 10.95.61.56:/data/softwares/seg_train_nfs    /Data/ljw/seg_train_nfs
