@@ -51,3 +51,6 @@ centerpoint                                v2                        fc0bbb55c8f
 
 //10.94.61.15/P_E2_DATA/数据标注/样例_障碍物/项目交付/LidarSEG/项目交付/luminar_seg  1.6P  1.6P  7.2T 100% /Data/luminar_seg_bk
 
+
+##  train log    
+https://github.com/lix19937/tensorrt-insight/issues/1   
