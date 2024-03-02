@@ -44,7 +44,7 @@ BART/T5-like (也被称作序列到序列的 Transformer模型)
 
 
 
-ref 
+## ref      
 https://huggingface.co/learn/nlp-course/chapter1/2?fw=pt   
 http://fancyerii.github.io/2019/03/09/transformer-illustrated/   
 
