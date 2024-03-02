@@ -1,4 +1,6 @@
 
+# see https://github.com/lix19937/dnn-cookbook/blob/main/gpt2/gpt2.md#gpt2attention   
+
 import torch
 import numpy as np
 
