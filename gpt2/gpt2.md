@@ -9,7 +9,32 @@
 ![gpt-attention-no-cache](https://github.com/lix19937/history/assets/38753233/7ecff23e-6492-4ece-ae25-c6444a86a613)
 
 > #### Conv1D     Basically works like a linear layer but the weights are transposed.
+```
+class Conv1D(nn.Module):
+    """
+    1D-convolutional layer as defined by Radford et al. for OpenAI GPT (and also used in GPT-2).
 
+    Basically works like a linear layer but the weights are transposed.
+
+    Args:
+        nf (`int`): The number of output features.
+        nx (`int`): The number of input features.
+    """
+
+    def __init__(self, nf, nx):
+        super().__init__()
+        self.nf = nf
+        self.weight = nn.Parameter(torch.empty(nx, nf))
+        self.bias = nn.Parameter(torch.zeros(nf))
+        nn.init.normal_(self.weight, std=0.02)
+
+    # bias + x * weight  
+    def forward(self, x):
+        size_out = x.size()[:-1] + (self.nf,)
+        x = torch.addmm(self.bias, x.view(-1, x.size(-1)), self.weight)
+        x = x.view(size_out)
+        return x
+```
 ### gpt-attention-use-cache   
 ![gpt-attention-use-cache](https://github.com/lix19937/history/assets/38753233/db529cbc-84f5-49c5-ae12-8e7a51c201bd)
 
