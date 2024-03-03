@@ -8,7 +8,7 @@
 ###  gpt-attention-no-cache
 ![gpt-attention-no-cache](https://github.com/lix19937/history/assets/38753233/7ecff23e-6492-4ece-ae25-c6444a86a613)
 
-#### Conv1D     Basically works like a linear layer but the weights are transposed.
+> #### Conv1D     Basically works like a linear layer but the weights are transposed.
 
 ### gpt-attention-use-cache   
 ![gpt-attention-use-cache](https://github.com/lix19937/history/assets/38753233/db529cbc-84f5-49c5-ae12-8e7a51c201bd)
