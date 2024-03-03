@@ -420,7 +420,7 @@ class GPT2Attention(nn.Module):
 
         if self.is_cross_attention:
             self.c_attn = Conv1D(2 * self.embed_dim, self.embed_dim)
-            self.q_attn = Conv1D(self.embed_dim, self.embed_dim)
+            self.q_attn = Conv1D(self.embed_dim, self.embed_dim) 
         else:
             self.c_attn = Conv1D(3 * self.embed_dim, self.embed_dim)
         self.c_proj = Conv1D(self.embed_dim, self.embed_dim)
@@ -497,7 +497,7 @@ class GPT2Attention(nn.Module):
         use_cache: Optional[bool] = False,
         output_attentions: Optional[bool] = False,
     ) -> Tuple[Union[torch.Tensor, Tuple[torch.Tensor]], ...]:
-        # 如果使用 cross atten  
+        # 如果使用 cross atten  （self.config.add_cross_attention）
         if encoder_hidden_states is not None:
             query = self.q_attn(hidden_states) # hidden_states 来自输入
             key, value = self.c_attn(encoder_hidden_states).split(self.split_size, dim=2) 
