@@ -31,6 +31,7 @@ class Conv1D(nn.Module):
     # bias + x * weight  
     def forward(self, x):
         size_out = x.size()[:-1] + (self.nf,)
+        # https://pytorch.org/docs/stable/generated/torch.addmm.html
         x = torch.addmm(self.bias, x.view(-1, x.size(-1)), self.weight)
         x = x.view(size_out)
         return x
