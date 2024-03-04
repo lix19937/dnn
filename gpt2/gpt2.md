@@ -41,8 +41,8 @@ class Conv1D(nn.Module):
  # hidden_states (bs*len, embed_dim) *  self.weight (embed_dim, 3 * self.embed_dim) -> (bs*len, 3*embed_dim)
  query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)    
  # query (bs, len, embed_dim)   
- # query (bs, len, embed_dim)   
- # query (bs, len, embed_dim)  
+ # key   (bs, len, embed_dim)   
+ # value (bs, len, embed_dim)  
 ```
 ### gpt-attention-use-cache   
 ![gpt-attention-use-cache](https://github.com/lix19937/history/assets/38753233/db529cbc-84f5-49c5-ae12-8e7a51c201bd)
