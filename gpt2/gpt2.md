@@ -44,6 +44,7 @@ class Conv1D(nn.Module):
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
+# 本地路径  会自动加载路径下的config.json, pytorch_model.bin
 model = GPT2LMHeadModel.from_pretrained("./gpt2", torchscript=True).eval()
 
 # tokenizer
