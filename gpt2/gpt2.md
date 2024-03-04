@@ -145,6 +145,7 @@ from transformers import GPT2LMHeadModel
 
 # 该路径为本地路径
 name_or_path = 'pre_trained/gpt'
+
 # 会自动加载name_or_path中的config.json, pytorch_model.bin
 lm_gpt2 = GPT2LMHeadModel.from_pretrained(name_or_path)
 
