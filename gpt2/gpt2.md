@@ -9,7 +9,7 @@
 ![gpt-attention-no-cache](https://github.com/lix19937/history/assets/38753233/7ecff23e-6492-4ece-ae25-c6444a86a613)
 
 > #### Conv1D     Basically works like a linear layer but the weights are transposed.
-```
+```py
 class Conv1D(nn.Module):
     """
     1D-convolutional layer as defined by Radford et al. for OpenAI GPT (and also used in GPT-2).
@@ -24,7 +24,7 @@ class Conv1D(nn.Module):
     def __init__(self, nf, nx):
         super().__init__()
         self.nf = nf
-        self.weight = nn.Parameter(torch.empty(nx, nf))
+        self.weight = nn.Parameter(torch.empty(nx, nf)) # (nx, nf)
         self.bias = nn.Parameter(torch.zeros(nf))
         nn.init.normal_(self.weight, std=0.02)
 
@@ -35,12 +35,20 @@ class Conv1D(nn.Module):
         x = torch.addmm(self.bias, x.view(-1, x.size(-1)), self.weight)
         x = x.view(size_out)
         return x
+
+
+ self.c_attn = Conv1D(3 * self.embed_dim, self.embed_dim)
+ # hidden_states (bs*len, embed_dim) *  self.weight (embed_dim, 3 * self.embed_dim) -> (bs*len, 3*embed_dim)
+ query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)    
+ # query (bs, len, embed_dim)   
+ # query (bs, len, embed_dim)   
+ # query (bs, len, embed_dim)  
 ```
 ### gpt-attention-use-cache   
 ![gpt-attention-use-cache](https://github.com/lix19937/history/assets/38753233/db529cbc-84f5-49c5-ae12-8e7a51c201bd)
 
 ### no use kv cache   
-```
+```py
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
@@ -73,7 +81,7 @@ print(f'Output: {out_text}')
 ```
 
 ### use kv cache 
-```
+```py
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
@@ -140,7 +148,7 @@ attention_mask : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 [CLS] 我 喜 欢 大 语 言 模 型 [SEP] 因 为 它 改 变 了 自 然 语 言 处 理 [SEP] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD]
 ```
 
-```
+```py
 from transformers import GPT2LMHeadModel
 
 # 该路径为本地路径
@@ -160,7 +168,7 @@ outputs = lm_gpt2(input_ids=x,
 https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py#L753C1-L768C6   
 
 ### GPT2LMHeadModel 
-```
+```py
 """
 The GPT2 Model transformer with a language modeling head on top (linear layer with weights tied to the input
 embeddings).
@@ -256,7 +264,7 @@ class GPT2LMHeadModel(GPT2PreTrainedModel):
 ```
 
 ### GPT2Model    
-```
+```py
 # model_type = "gpt2"
 # keys_to_ignore_at_inference = ["past_key_values"]
 # attribute_map = {
@@ -394,7 +402,7 @@ GPT2Model output:
 (hidden_states, presents, all_hidden_states, all_self_attentions, all_cross_attentions)     
 
 ### GPT2Attention        
-```    
+```py    
 class GPT2Attention(nn.Module):
     def __init__(self, config, is_cross_attention=False, layer_idx=None):
         super().__init__()
@@ -413,7 +421,7 @@ class GPT2Attention(nn.Module):
         self.num_heads = config.num_attention_heads
         self.head_dim = self.embed_dim // self.num_heads
         self.split_size = self.embed_dim
-        if self.head_dim * self.num_heads != self.embed_dim: # 必须要求 embed_dim 可以 整除 num_heads
+        if self.head_dim * self.num_heads != self.embed_dim: # 必须要求 embed_dim 可以整除 num_heads
             raise ValueError(
                 f"`embed_dim` must be divisible by num_heads (got `embed_dim`: {self.embed_dim} and `num_heads`:"
                 f" {self.num_heads})."
@@ -427,6 +435,7 @@ class GPT2Attention(nn.Module):
             self.q_attn = Conv1D(self.embed_dim, self.embed_dim) 
         else:
             self.c_attn = Conv1D(3 * self.embed_dim, self.embed_dim)
+
         self.c_proj = Conv1D(self.embed_dim, self.embed_dim)
 
         self.attn_dropout = nn.Dropout(config.attn_pdrop)
@@ -444,8 +453,10 @@ class GPT2Attention(nn.Module):
 
         if not self.is_cross_attention:
             # if only "normal" attention layer implements causal mask
+            # len, len
             query_length, key_length = query.size(-2), key.size(-2)
             causal_mask = self.bias[:, :, key_length - query_length : key_length, :key_length]
+
             mask_value = torch.finfo(attn_weights.dtype).min
             # Need to be a tensor, otherwise we get error: `RuntimeError: expected scalar type float but found double`.
             # Need to be on the same device, otherwise `RuntimeError: ..., x and y to be on the same device`
@@ -501,12 +512,15 @@ class GPT2Attention(nn.Module):
         use_cache: Optional[bool] = False,
         output_attentions: Optional[bool] = False,
     ) -> Tuple[Union[torch.Tensor, Tuple[torch.Tensor]], ...]:
+        # hidden_states shape (bs, len, hidden_size)
+
         # 如果使用 cross atten  （self.config.add_cross_attention）
         if encoder_hidden_states is not None:
             query = self.q_attn(hidden_states) # hidden_states 来自输入
             key, value = self.c_attn(encoder_hidden_states).split(self.split_size, dim=2) 
             attention_mask = encoder_attention_mask
         else:
+            # (bs, len, hidden_size) * 
             query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)
 
         # 按num_heads 数据拆分重排, 没有运算  
