@@ -50,6 +50,7 @@ model = GPT2LMHeadModel.from_pretrained("./gpt2", torchscript=True).eval()
 tokenizer = GPT2Tokenizer.from_pretrained("./gpt2")
 in_text = "Lionel Messi is a"
 in_tokens = torch.tensor(tokenizer.encode(in_text))
+print('>> in_tokens shape ', in_tokens.shape)
 
 # inference
 token_eos = torch.tensor([198]) # line break symbol
@@ -59,7 +60,8 @@ with torch.no_grad():
     while out_token != token_eos:
         logits, _ = model(in_tokens)
         out_token = torch.argmax(logits[-1, :], dim=0, keepdim=True)
-        in_tokens = torch.cat((in_tokens, out_token), 0)# 将当前结果拼接到当前输入 token 后面，形成新的输入 token
+        in_tokens = torch.cat((in_tokens, out_token), 0) # 将当前结果拼接到当前输入 token 后面，形成新的输入 token
+        print('in_tokens shape ', in_tokens.shape)
         text = tokenizer.decode(in_tokens)
         print(f'step {i} input: {text}', flush=True)
         i += 1
