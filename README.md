@@ -1,5 +1,5 @@
+![conv](https://github.com/lix19937/dnn-cookbook/assets/38753233/22dd3cff-6ede-4479-94b0-1be67f61badf)
 
-![conv](https://github.com/lix19937/pytorch-cookbook/assets/38753233/a158c582-60af-4779-bc42-e76089984d53)    
 ```c  
 0*0 + 2*1 + 0*(-1)      + 0*(-1) + 1*0 + 2*1   + 0*(-1) + 2*(-1) + 1*1  +  
 
