@@ -3,7 +3,7 @@
 
 Test the whole generation capabilities here: https://transformer.huggingface.co/doc/gpt2-large
 
-Pretrained model on English language using a causal language modeling (CLM) objective. It was introduced in
+Pretrained model on English language using a **causal language modeling (CLM)** objective. It was introduced in
 [this paper](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
 and first released at [this page](https://openai.com/blog/better-language-models/).
 
@@ -62,17 +62,6 @@ model = GPT2Model.from_pretrained('gpt2')
 text = "Replace me by any text you'd like."
 encoded_input = tokenizer(text, return_tensors='pt')
 output = model(**encoded_input)
-```
-
-and in TensorFlow:
-
-```python
-from transformers import GPT2Tokenizer, TFGPT2Model
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-model = TFGPT2Model.from_pretrained('gpt2')
-text = "Replace me by any text you'd like."
-encoded_input = tokenizer(text, return_tensors='tf')
-output = model(encoded_input)
 ```
 
 ### Limitations and bias
@@ -153,7 +142,3 @@ The model achieves the following results without any fine-tuning (zero-shot):
   year={2019}
 }
 ```
-
-<a href="https://huggingface.co/exbert/?model=gpt2">
-	<img width="300px" src="https://cdn-media.huggingface.co/exbert/button.png">
-</a>
