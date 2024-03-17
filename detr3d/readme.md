@@ -71,11 +71,11 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
 
 -------------------------
 
-如何将环视图像转化为BEV？   
++ 如何将环视图像转化为BEV？   
 在DETR3D、BEVFormer中，是通过reference points和相机参数 的物理意义进行投影来获取图像features，这样的优点在于计算量较小，通过FPN的mutli-scale结构和deformable detr的learned offset，即使只有一个或几个reference points也可以得到足够的感受野信息。缺点在于BEV的同个polar ray上的reference point通过投影采样到的图像特征都是一样的，图像缺少了深度信息，网络需要在后续特征聚合的时候去判别采样到的信息和当前位置的reference points是否match。   
 在BEVDet里，转化过程follow了lift-splat-shoot的方法，也就是对image feature map的每个位置预测一个depth distribution，再将feature的值乘以深度概率lift到BEV下。这么做需要很大的计算量和显存，由于没有真实的深度标签，所以实际预测的是一个没有确切物理意义的概率。而且图片中相当一部分内容是不含有物体的，将全部feature参与计算可能略显冗余。
 
-如何选择BEV的表现形式？   
++ 如何选择BEV的表现形式？   
 在DETR3D里，我们并没有完整显式地表示出了整个BEV，而且由sparse的object query来进行表示。最显著的好处就是节省了内存和计算量。而在BEVDet和BEVFormer里，他们生成了一个dense的BEV feature，虽然增加了显存，不过一来更容易去做BEV space下的data augmentation，二来像BEVDet一样可以另外增加对BEV features 的encoding，三来可以适应于各种3D detection head（BEVDet用了centerpoint，BEVFormer用了deformable detr）。
 
 ---------------------------
