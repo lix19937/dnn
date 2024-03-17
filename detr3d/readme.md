@@ -60,6 +60,15 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
   ![model-detr3d](https://github.com/lix19937/pytorch-cookbook/assets/38753233/7b256cca-adfe-4d1f-8243-539eb5020d28)    
   decoder的部分输入紧连cross attention（注意不是紧连MHA），见[cross attention](https://github.com/lix19937/tensorrt-insight/tree/main/plugin/detr3d/decoder/cross_attention.md) 
 
+预先设置600/900 我们取512个object query，每个query是256维的embedding。所有的object query由一个全连接网络预测出在BEV空间中的3D reference point坐标(x, y, z)，坐标经过sigmoid函数归一化后表示在空间中的相对位置。
+
+在每层layer之中，所有的object query之间做self-attention来相互交互获取全局信息并避免多个query收敛到同个物体。object query再和图像特征之间做cross-attention：将每个query对应的3D reference point通过相机的内参外参投影到图片坐标，利用线性插值来采样对应的multi-scale image features，如果投影坐标落在图片范围之外就补零，之后再用sampled image features去更新object queries。  
+
+经过attention更新后的object query通过两个MLP网络来分别预测对应物体的class和bounding box的参数。为了让网络更好的学习，我们每次都预测bounding box的中心坐标相对于reference points的offset (delta_x, delta_y, delta_z) 来更新reference points的坐标。
+
+每层更新的object queries和reference points作为下一层decoder layer的输入，再次进行计算更新，总共迭代6次。
+
+
 * head    
 输出通过两个分支，`回归bbox信息`和`分类目标类别`
   
