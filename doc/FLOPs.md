@@ -1,4 +1,6 @@
 
+![conv-c](https://github.com/lix19937/dnn-cookbook/assets/38753233/c52ba380-117d-44b9-817d-8955073345c4)
+
 
 
 
