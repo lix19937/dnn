@@ -1,5 +1,5 @@
 
-![conv-c](https://github.com/lix19937/dnn-cookbook/assets/38753233/c52ba380-117d-44b9-817d-8955073345c4)
+![conv-c](https://github.com/lix19937/dnn-cookbook/assets/38753233/e18e8f26-37ec-4c28-a75c-36c1735edece)
 
 假设卷积核的尺寸是K×K    
 输入：C个特征图  
