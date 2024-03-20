@@ -17,6 +17,7 @@ weights[1, :, :, :]   表示第2组weights
 ```cpp 
 M * H * W * K * K * C
 ```
++ 如果不带bias  
 加法次数：    
 ```cpp 
   M * H * W * ( C * ( K * K - 1 ) + C - 1 )      
@@ -29,7 +30,7 @@ M * H * W * K * K * C
 = M * H * W * (K * K * C * 2 - 1)
 ```
 
-如果带 bias，加法次数：   
++ 如果带 bias，加法次数：   
 ```
   M * H * W * ( C * ( K * K - 1 ) + C - 1 + 1 )
 = M * H * W * ( C * K * K )
