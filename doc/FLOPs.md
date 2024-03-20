@@ -19,15 +19,26 @@ M * H * W * K * K * C
 ```
 加法次数：    
 ```cpp 
-  M * H * W * ( C * ( K * k - 1 ) + C - 1 )      
-= M * H * W * ( C * K * k - 1 )    
+  M * H * W * ( C * ( K * K - 1 ) + C - 1 )      
+= M * H * W * ( C * K * K - 1 )    
 ```
+
+故总的次数    
+```cpp
+  M * H * W * K * K * C + M * H * W * ( C * K * K - 1 )
+= M * H * W * (K * K * C * 2 - 1)
+```
+
 如果带 bias，加法次数：   
 ```
-  M * H * W * ( C * ( K * k - 1 ) + C - 1 + 1 )
-= M * H * W * ( C * K * k )
+  M * H * W * ( C * ( K * K - 1 ) + C - 1 + 1 )
+= M * H * W * ( C * K * K )
 ```   
-
+故总的次数    
+```cpp
+  M * H * W * K * K * C + M * H * W * ( C * K * K )
+= M * H * W * K * K * C * 2   
+```
 
 ref   
 https://blog.csdn.net/sinat_28442665/article/details/113738818  
