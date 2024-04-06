@@ -8,7 +8,7 @@
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/9d3a164d-b00c-4e12-a3da-48b3859c0f77)    
 BEV-IPM[1]    
 
-Cam2BEV (ICITS 2020)   
+Cam2BEV (ICITS 2020)[2]         
 Cam2BEV可能不是第一个基于IPM的BEV工作，但是一个高度相关的工作。该方法用IPM进行特征变换，并用CNN来校正不符合路面平坦假设的颠簸。  
 
 ## Lift-Splat系列    
@@ -19,20 +19,18 @@ M2BEV (2022/04, Arxiv)[10]
 Lift-Splat-Shoot为估计每个视锥体voxel的深度分布，耗费了大量显存，继而限制了backbone的大小。为了节省显存使用，M2BEV[9]假设沿射线的深度分布是均匀的，也就是沿相机射线的所有voxel都填充有与 2D 空间中的单个像素对应的相同特征。这个假设通过减少学习参数的数量来提高计算和内存效率。GPU显存占用仅为原始版本的 1/3，因此可以使用更大的backbone以获得更好的性能。   
 
 BEVFusion (2022/05, Arxiv)[11]    
-为了实现splat操作，Lift-Splat-Shoot[4]利用“Cumulative Sum(CumSum) Trick”，根据其对应的 BEV 网格 ID 对所有视锥体特征进行排序，对所有特征执行累积求和，然后减去边界处的累积求和值。 然而，“CumSum Trick”存在两个缺陷损害探测器的整体运行速度：
-
-涉及对大量 BEV 坐标的排序过程，增加额外的计算量；
+为了实现splat操作，Lift-Splat-Shoot[4]利用“Cumulative Sum(CumSum) Trick”，根据其对应的 BEV 网格 ID 对所有视锥体特征进行排序，对所有特征执行累积求和，然后减去边界处的累积求和值。 然而，“CumSum Trick”存在两个缺陷损害探测器的整体运行速度：    
+涉及对大量 BEV 坐标的排序过程，增加额外的计算量；       
 采用的Prefix Sum技术使用串行方式计算，因此运行效率低下。   
 
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/a701418c-a57e-46d1-bc9b-a9fc64655f3f)
 
-因此，BEVFusion[11]优化了BEV pooling中网格关联和特征聚合，将其加速了40倍。其中：   
-网格关联的目标是将每个视锥体特征的 3D 坐标和 BEV 网格建立索引，可以通过缓存预先计算和排序的结果，降低网格关联延迟。
+因此，BEVFusion[11]优化了BEV pooling中网格关联和特征聚合，将其加速了40倍。其中：    
+网格关联的目标是将每个视锥体特征的 3D 坐标和 BEV 网格建立索引，可以通过缓存预先计算和排序的结果，降低网格关联延迟。    
 特征聚合的目标是通过对称函数（例如mean、max和sum等）聚合每个 BEV 网格内的特征。为了并行化，每个BEV网格可以分配一个GPU线程，并设计专用 GPU Kernel加速。    
 
-BEVDepth (2022/06, Arxiv)[12]    
-类似BEVFusion的并行化思路，BEVDepth[12]则为每个视锥体特征分配一个GPU线程，并行化版本替换原来的BEV pooling模块可以加快80倍，算法整体也加速了3倍。因为每个视锥体特征是等长的，所以并行程度更高。   
-
+BEVDepth (2022/06, Arxiv)[12]     
+类似BEVFusion的并行化思路，BEVDepth[12]则为每个视锥体特征分配一个GPU线程，并行化版本替换原来的BEV pooling模块可以加快80倍，算法整体也加速了3倍。因为每个视锥体特征是等长的，所以并行程度更高。    
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/0dd07f39-767c-419d-a394-c457478ac289)   
 BEVDepth[12]   
 
@@ -46,16 +44,17 @@ PON (CVPR 2020 oral) [15]
 考虑到几何先验，PON先收缩图像特征的垂直维度（通道维度映射到大小为B），但保留水平维度 W；然后沿水平轴并reshape特征图成维度为C×Z×W的张量，最后基于已知的相机焦距重采样成笛卡尔坐标系的BEV特征。   
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/d721f989-de7f-46fb-af60-26a22de21976)   
 PON[15]   
-MLP系列的优缺点
+
+MLP系列的优缺点    
 MLP系列的优点很明显，实现非常简单，也很容易在车端部署。但是缺点也很明显，相机的内外参是重要的先验信息（inductive bias），MLP放弃掉这些有用的信息，而采取数据驱动的方式隐式学习内外参，将其融入到MLP的权重当中，有点舍近求远，性能上和后续的Transformer系列相比也有更低的天花板。     
 
 ## Transformer系列      
-自 2020 年年中以来，transformer[17] 席卷计算机视觉领域，使用基于attention的transformer对视图转换进行建模显示出吸引力。由于使用全局注意力机制，transformer 更适合执行视图转换的工作。目标域中的每个位置具有相同的距离来访问源域中的任何位置，克服了 CNN 中卷积层感受野受限局部。    
+自 2020 年年中以来，transformer[17] 席卷计算机视觉领域，使用基于attention的transformer对视图转换进行建模显示出吸引力。由于使用全局注意力机制，transformer 更适合执行视图转换的工作。目标域中的每个位置具有相同的距离来访问源域中的任何位置，克服了 CNN 中卷积层感受野受限局部。     
 
 Transformer 中有两种注意力机制，encoder 中的 self attention 和 decoder 中的 cross attention。它们之间的主要区别是query Q。在 self attention 中，Q、K、V 输入是相同的，而在 cross attention 中，Q 与 K 和 V 的域不同，attention 模块的输出尺寸与query Q 相同。简而言之，self attention 可以看作是原始特征域中的特征增强器，而 cross attention 则可以被视为跨域生成器。  
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/88c835cb-b322-4973-bcc8-ba228a17b52b)
 
-Transformers 的许多最新进展实际上仅利用了self attention机制，例如被大量引用的 ViT或 [18]Swin Transformer[19]。它们用于增强backbone提取的特征。然而，考虑到在量产车上嵌入式系统资源有限，部署 Transformer 存在困难。相对于容易部署的CNN，self attention的增量收益较小。因此，在self attention机制取得突破性优势之前，量产自动驾驶使用CNN会是一个明智的选择。
+Transformers 的许多最新进展实际上仅利用了self attention机制，例如被大量引用的 ViT或 [18]Swin Transformer[19]。它们用于增强backbone提取的特征。然而，考虑到在量产车上嵌入式系统资源有限，部署 Transformer 存在困难。相对于容易部署的CNN，self attention的增量收益较小。因此，在self attention机制取得突破性优势之前，量产自动驾驶使用CNN会是一个明智的选择。    
 
 另一方面，使用cross attention理由更为充分和可靠。将cross attention应用于计算机视觉的一项开创性研究是 DETR[20]。 DETR最具创新性的部分之一是object query，即基于固定数量槽的cross-attention decoder。原始的 Transformer 论文将每个query逐个自回归输入decoder，但DETR将这些query并行输入到 DETR decoder中。除了query的数量，query的内容是学习的，不需要在训练前指定。Query可以被视为预先分配的模板来保存对象检测结果，cross-attention decoder完成填充空白的工作。   
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/cf9278d8-7b9f-4c6f-91ea-88967b316bee)  
@@ -132,15 +131,15 @@ Translating Images into Maps [29]发现无论图像像素的深度如何，图�
 笔者列出了视图转换模块中更详细的模块（圆圈）和对应的张量及其形状（正方形）。BEV 空间中的张量用蓝色标记，核心cross attention模块用红色标记。  
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/a18be445-53d8-4272-ab67-13a27c9693a8)  
 
-BEVFormer (ECCV 2022) [30]
+BEVFormer (ECCV 2022) [30]     
 BEVFormer 通过预定义的网格形 BEV query、spatial cross attention（SCA）和temporal self attention（实际上也是cross attention）交互时空信息。SCA对于 BEV 网格中的每个pillar，沿高度从-5m 到3m，每2m采样一次共4个点，并投影到图像以形成参考点。   ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/a3f537fe-2543-4bd7-a89b-259c74b26293)   
 BEVFormer     
 BEVFormer使用了Deformable DETR 中提出的 Deformable attention。DETR 的问题是长时间训练收敛慢和检测小物体的性能低下。因此，Deformable DETR 首先通过只关注参考周围的一小组关键采样点来减少计算量。然后它使用多尺度可变形注意力模块来聚合多尺度特征（没有 FPN）来帮助小目标检测。每个object query仅限于关注参考点周围的一小组关键采样点，而不是特征图中的所有点。
 
-PersFormer (ECCV 2022 oral) [31]
-PersFormer采用统一的 2D/3D anchor设计和辅助任务同时检测 2D/3D 车道线。视角变换的总体思路是先使用来自 IPM 的坐标变换矩阵作为参考，通过关注前视图特征中的相关区域（局部上下文）来生成 BEV 特征表示。这与BEVFormer 非常相似，区别PersFormer是通过IPM将参考点固定在地面上（设置 z=0）。
+PersFormer (ECCV 2022 oral) [31]      
+PersFormer采用统一的 2D/3D anchor设计和辅助任务同时检测 2D/3D 车道线。视角变换的总体思路是先使用来自 IPM 的坐标变换矩阵作为参考，通过关注前视图特征中的相关区域（局部上下文）来生成 BEV 特征表示。这与BEVFormer 非常相似，区别PersFormer是通过IPM将参考点固定在地面上（设置 z=0）。     
 
-值得一提的是，PersFormer在Waymo Open数据集 [32]的基础上，提出了3D车道线新数据集OpenLane。数据集使用 2D 和 3D 激光雷达点云进行注释。 每个图像中都标记了车道的可见性，并且似乎比带有高清地图的 AutoLabel 方法（nuScenes 数据集 [33]）要精细得多。   
+值得一提的是，PersFormer在Waymo Open数据集 [32]的基础上，提出了3D车道线新数据集OpenLane。数据集使用 2D 和 3D 激光雷达点云进行注释。 每个图像中都标记了车道的可见性，并且似乎比带有高清地图的 AutoLabel 方法（nuScenes 数据集 [33]）要精细得多。    
 
 ## 总结      
 以上4类方法各有优势，同时也存在一些挑战：   
@@ -188,7 +187,8 @@ PersFormer采用统一的 2D/3D anchor设计和辅助任务同时检测 2D/3D �
 ^Ettinger, Scott, et al. "Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. https://arxiv.org/abs/2104.10133
 ^Caesar, Holger, et al. "nuscenes: A multimodal dataset for autonomous driving." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2020. https://arxiv.org/abs/1903.11027
 
-
+## ref    
+https://www.zhihu.com/question/521842610
 
 
 
