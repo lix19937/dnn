@@ -12,4 +12,17 @@ Cam2BEV (ICITS 2020)
 Cam2BEV可能不是第一个基于IPM的BEV工作，但是一个高度相关的工作。该方法用IPM进行特征变换，并用CNN来校正不符合路面平坦假设的颠簸。  
 
 ## Lift-Splat系列    
-Lift-Splat使用单目深度估计，将2D图片特征升维（lift）到成每个相机的视锥体（frustum）特征，并在 BEV 上进行“拍平”（splat）。该方法由Lif-Splat-Shoot（LSS）[4]首次提出，有着 BEV-Seg[5] 、CaDDN [6]、FIERY[7] 、BEVDet[8]、BEVDet4D[9]、M2BEV[10]、BEVFusion[11]和BEVDepth[12]等许多后续工作。
+Lift-Splat使用单目深度估计，将2D图片特征升维（lift）到成每个相机的视锥体（frustum）特征，并在 BEV 上进行“拍平”（splat）。该方法由Lif-Splat-Shoot（LSS）[4]首次提出，有着 BEV-Seg[5] 、CaDDN [6]、FIERY[7] 、BEVDet[8]、BEVDet4D[9]、M2BEV[10]、BEVFusion[11]和BEVDepth[12]等许多后续工作。   
+![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/43ccc160-ca62-49d3-8c9c-bad3ab450ab9)  
+
+M2BEV (2022/04, Arxiv)[10]
+Lift-Splat-Shoot为估计每个视锥体voxel的深度分布，耗费了大量显存，继而限制了backbone的大小。为了节省显存使用，M2BEV[9]假设沿射线的深度分布是均匀的，也就是沿相机射线的所有voxel都填充有与 2D 空间中的单个像素对应的相同特征。这个假设通过减少学习参数的数量来提高计算和内存效率。GPU显存占用仅为原始版本的 1/3，因此可以使用更大的backbone以获得更好的性能。   
+
+BEVFusion (2022/05, Arxiv)[11]
+为了实现splat操作，Lift-Splat-Shoot[4]利用“Cumulative Sum(CumSum) Trick”，根据其对应的 BEV 网格 ID 对所有视锥体特征进行排序，对所有特征执行累积求和，然后减去边界处的累积求和值。 然而，“CumSum Trick”存在两个缺陷损害探测器的整体运行速度：
+
+涉及对大量 BEV 坐标的排序过程，增加额外的计算量；
+采用的Prefix Sum技术使用串行方式计算，因此运行效率低下。   
+
+![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/a701418c-a57e-46d1-bc9b-a9fc64655f3f)
+
