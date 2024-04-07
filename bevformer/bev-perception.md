@@ -161,7 +161,8 @@ PersFormer采用统一的 2D/3D anchor设计和辅助任务同时检测 2D/3D �
 
 面对这些挑战，尽管可能存在遗漏，笔者最大程度上尝试梳理了现有BEV视角变换的研发脉络，反馈给整个量产自动驾驶community。希望有助于感兴趣的读者在这个方向上更深入地挖掘。
 
-关注我们，之后还会进一步分享关于BEV下的multi-task联合训练，时序信息的利用，以及如何做联合感知和预测。也欢迎各位加入小鹏一起持续提升这个富有挑战性的新范式！
+BEV下的multi-task联合训练，时序信息的利用。  
+
 
 ## 参考      
 ^Kim, Youngseok, and Dongsuk Kum. "Deep learning based vehicle position and orientation estimation via inverse perspective mapping image." 2019 IEEE Intelligent Vehicles Symposium (IV). IEEE, 2019. https://ieeexplore.ieee.org/document/8814050
