@@ -69,8 +69,9 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
 + 预先设置query nums (seq_lens) 600/or 900， 取512个object query（1个query 预测一个目标，bbox的3维中心点坐标3D reference point），每个query是256 维的 embedding。    
 所有的 object query由一个全连接网络预测出在BEV空间中的3D reference point坐标(x, y, z)，坐标经过sigmoid函数归一化后表示在空间中的相对位置。
 
-+ 在每层layer之中，所有的object query之间做self-attention来相互交互获取全局信息并避免多个query收敛到同个物体。
-object query再和图像特征之间做cross-attention：将每个query对应的3D reference point通过相机的内参外参投影到特征图图片坐标系（将reference point转为齐次坐标，通过相机参数矩阵转为2D中心点，特别注意的是，每个相机标定的参数矩阵都是不一样的，需要成对应的参数矩阵），利用线性插值来采样对应的multi-scale image features，如果投影坐标落在图片范围之外就补零，之后再用sampled image features去更新object queries。  
++ 在每层layer之中，所有的object query之间做self-attention来相互交互获取全局信息并避免多个query收敛到同个物体。   
+object query再和图像特征之间做cross-attention：将每个query对应的3D reference point通过相机的内参外参投影到特征图图片坐标系（将reference point转为齐次坐标，通过相机参数矩阵转为2D中心点，特别注意的是，每个相机标定的参数矩阵都是不一样的，需要成对应的参数矩阵）
+利用线性插值来采样对应的multi-scale image features，如果投影坐标落在图片范围之外就补零，之后再用sampled image features去更新object queries。  
 
 + 经过attention更新后的object query通过两个MLP网络来分别预测对应物体的class和bounding box的参数。为了让网络更好的学习，我们每次都预测bounding box的中心坐标相对于reference points的offset (delta_x, delta_y, delta_z) 来更新reference points的坐标。
 
