@@ -165,37 +165,68 @@ PersFormer采用统一的 2D/3D anchor设计和辅助任务同时检测 2D/3D �
 
 ## 参考      
 ^Kim, Youngseok, and Dongsuk Kum. "Deep learning based vehicle position and orientation estimation via inverse perspective mapping image." 2019 IEEE Intelligent Vehicles Symposium (IV). IEEE, 2019. https://ieeexplore.ieee.org/document/8814050
+
 ^Reiher, Lennart, Bastian Lampe, and Lutz Eckstein. "A sim2real deep learning approach for the transformation of images from multiple vehicle-mounted cameras to a semantically segmented image in bird’s eye view." 2020 IEEE 23rd International Conference on Intelligent Transportation Systems (ITSC). IEEE, 2020. https://arxiv.org/pdf/2005.04078
+
 ^Liu, Yicheng, et al. "VectorMapNet: End-to-end Vectorized HD Map Learning." arXiv preprint arXiv:2206.08920 (2022). https://arxiv.org/pdf/2206.08920
 ^abPhilion, Jonah, and Sanja Fidler. "Lift, splat, shoot: Encoding images from arbitrary camera rigs by implicitly unprojecting to 3d." European Conference on Computer Vision. Springer, Cham, 2020. https://arxiv.org/pdf/2008.05711
+
 ^Ng, Mong H., et al. "BEV-Seg: Bird's Eye View Semantic Segmentation Using Geometry and Semantic Point Cloud." arXiv preprint arXiv:2006.11436 (2020). https://arxiv.org/pdf/2006.11436 [6] Reading, Cody, et al. "Categorical depth distribution network for monocular 3d object detection." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2021. https://arxiv.org/abs/2103.01100
+
 ^Reading, Cody, et al. "Categorical depth distribution network for monocular 3d object detection." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2021. https://arxiv.org/abs/2103.01100
+
 ^Hu, Anthony, et al. "FIERY: Future Instance Prediction in Bird's-Eye View From Surround Monocular Cameras." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. https://arxiv.org/pdf/2206.04584
+
 ^Huang, Junjie, et al. "Bevdet: High-performance multi-camera 3d object detection in bird-eye-view." arXiv preprint arXiv:2112.11790 (2021). https://arxiv.org/pdf/2112.11790
+
 ^abHuang, Junjie, and Guan Huang. "Bevdet4d: Exploit temporal cues in multi-camera 3d object detection." arXiv preprint arXiv:2203.17054 (2022). https://arxiv.org/pdf/2203.17054
+
 ^abXie, Enze, et al. "M^2BEV: Multi-Camera Joint 3D Detection and Segmentation with Unified Birds-Eye View Representation." arXiv preprint arXiv:2204.05088 (2022). https://arxiv.org/abs/2204.05088
+
 ^abcLiu, Zhijian, et al. "BEVFusion: Multi-Task Multi-Sensor Fusion with Unified Bird's-Eye View Representation." arXiv preprint arXiv:2205.13542 (2022). https://arxiv.org/pdf/2205.13542
+
 ^abcdLi, Yinhao, et al. "BEVDepth: Acquisition of Reliable Depth for Multi-view 3D Object Detection." arXiv preprint arXiv:2206.10092 (2022). https://arxiv.org/abs/2206.10092
+
 ^abPan, Bowen, et al. "Cross-view semantic segmentation for sensing surroundings." IEEE Robotics and Automation Letters 5.3 (2020): 4867-4873. https://arxiv.org/pdf/1906.03560
+
 ^Hendy, Noureldin, et al. "Fishing net: Future inference of semantic heatmaps in grids." arXiv preprint arXiv:2006.09917 (2020). https://arxiv.org/pdf/2006.09917
-^abcRoddick, Thomas, and Roberto Cipolla. "Predicting semantic map representations from images using pyramid occupancy networks." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020. https://arxiv.org/abs/2003.13402
-^Li, Qi, et al. "Hdmapnet: A local semantic map learning and evaluation framework." arXiv preprint arXiv:2107.06307 (2021). https://arxiv.org/pdf/2107.06307
-^Vaswani, Ashish, et al. "Attention is all you need." Advances in neural information processing systems 30 (2017). https://arxiv.org/abs/1706.03762
-^Dosovitskiy, Alexey, et al. "An image is worth 16x16 words: Transformers for image recognition at scale." arXiv preprint arXiv:2010.11929 (2020). https://arxiv.org/abs/2010.11929
+
+^abcRoddick, Thomas, and Roberto Cipolla. "Predicting semantic map representations from images using pyramid occupancy networks." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020. https://arxiv.org/abs/2003.13402    
+
+^Li, Qi, et al. "Hdmapnet: A local semantic map learning and evaluation framework." arXiv preprint arXiv:2107.06307 (2021). https://arxiv.org/pdf/2107.06307    
+
+^Vaswani, Ashish, et al. "Attention is all you need." Advances in neural information processing systems 30 (2017). https://arxiv.org/abs/1706.03762    
+
+^Dosovitskiy, Alexey, et al. "An image is worth 16x16 words: Transformers for image recognition at scale." arXiv preprint arXiv:2010.11929 (2020). https://arxiv.org/abs/2010.11929    
+
 ^Liu, Ze, et al. "Swin transformer: Hierarchical vision transformer using shifted windows." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. https://arxiv.org/abs/2103.14030
+
 ^Carion, Nicolas, et al. "End-to-end object detection with transformers." European conference on computer vision. Springer, Cham, 2020. https://arxiv.org/pdf/2005.12872.pdf
+
 ^abcdKarpathy, Andrej, et al. "Tesla AI Day" YouTube, uploaded by Tesla, 20 Aug. 2021. https://youtu.be/j0z4FweCy4M?t=3613
+
 ^abYang, Weixiang, et al. "Projecting your view attentively: Monocular road scene layout estimation via cross-view transformation." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2021. https://ieeexplore.ieee.org/document/9578824
+
 ^abChitta, Kashyap, Aditya Prakash, and Andreas Geiger. "Neat: Neural attention fields for end-to-end autonomous driving." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. https://arxiv.org/abs/2109.04456
+
 ^abCan, Yigit Baran, et al. "Structured Bird's-Eye-View Traffic Scene Understanding From Onboard Images." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. https://arxiv.org/abs/2110.01997
+
 ^abWang, Yue, et al. "Detr3d: 3d object detection from multi-view images via 3d-to-2d queries." Conference on Robot Learning. PMLR, 2022. https://arxiv.org/abs/2110.06922
+
 ^abZhou, Brady, and Philipp Krähenbühl. "Cross-view Transformers for real-time Map-view Semantic Segmentation." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022. https://arxiv.org/abs/2205.02833
+
 ^abcLiu, Yingfei, et al. "Petr: Position embedding transformation for multi-view 3d object detection." European conference on computer vision. 2022. https://arxiv.org/abs/2203.05625
+
 ^Liu, Yingfei, et al. "PETRv2: A Unified Framework for 3D Perception from Multi-Camera Images." arXiv preprint arXiv:2206.01256 (2022). https://arxiv.org/abs/2206.01256
+
 ^abSaha, Avishkar, et al. "Translating images into maps." International Conference on Robotics and Automation. 2022
+
 ^Li, Zhiqi, et al. "BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers." European conference on computer vision. 2022. https://arxiv.org/pdf/2203.17270
+
 ^Chen, Li, et al. "PersFormer: 3D Lane Detection via Perspective Transformer and the OpenLane Benchmark." European conference on computer vision. 2022.  https://arxiv.org/pdf/2203.11089
+
 ^Ettinger, Scott, et al. "Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2021. https://arxiv.org/abs/2104.10133
+
 ^Caesar, Holger, et al. "nuscenes: A multimodal dataset for autonomous driving." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2020. https://arxiv.org/abs/1903.11027
 
 ## ref    
