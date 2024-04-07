@@ -3,7 +3,8 @@
 
 ![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/4e0b1daf-f721-4503-8732-580d59c43baf)
 
-![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/f423e584-a137-4c37-93de-590ac8289028)
+![image](https://github.com/lix19937/dnn-cookbook/assets/38753233/152317b7-e55b-4562-811c-cb09a8039f27)
+
 
 
 在过去两年中， BEV 感知主要出现了四类视图转换模块方案：IPM（Inverse Perspective Mapping）、**Lift-splat**、MLP（Multi-Layer Perceptron）和 **Transformer**。      
