@@ -46,7 +46,7 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
   |模块| 作用|    
   |---|----|    
   |csp+darknet53|Feature Learning, 输出给FPN (特征金字塔) |       
-  |[FPN](fpn/fpn.md)| Multi-scale features provide rich information to recognize objects of different sizes<br>4个不同尺度(H,W)特征图<br>(72,184)<br>(36,92)<br>(18,46)<br>(9,23)<br> 这里我们使用https://github.com/open-mmlab/mmdetection/blob/main/mmdet/models/necks/pafpn.py|         
+  |[FPN](fpn/fpn.md)| Multi-scale features provide rich information to recognize objects of different sizes<br>4个不同尺度(H,W)特征图<br>(NC, CH, 72,184)<br>(NC, CH, 36,92)<br>(NC, CH, 18,46)<br>(NC, CH, 9,23)<br> 这里我们使用https://github.com/open-mmlab/mmdetection/blob/main/mmdet/models/necks/pafpn.py|         
 
 * transformer decoder       
 `特征层面实现2D到3D的转换`          
