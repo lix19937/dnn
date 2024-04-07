@@ -42,7 +42,7 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
   ```
 
 * backbone + neck     
-  输入车载环视的6张图片, 每张图片通过ResNet或者VoVNet等骨干网络提取特征；再通过FPN得到4个不同尺度特征图      
+  输入车载环视的6（NC=6）张图片, 每张图片通过ResNet或者VoVNet等骨干网络提取特征；再通过FPN得到4个不同尺度特征图      
   |模块| 作用|    
   |---|----|    
   |csp+darknet53|Feature Learning, 输出给FPN (特征金字塔) |       
