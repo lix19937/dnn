@@ -75,7 +75,7 @@ object query再和图像特征之间做cross-attention：将每个query对应的
 
 + 经过attention更新后的object query通过两个MLP网络来分别预测对应物体的class和bounding box的参数。为了让网络更好的学习，我们每次都预测bounding box的中心坐标相对于reference points的offset (delta_x, delta_y, delta_z) 来更新reference points的坐标。
 
-+ 每层更新的object queries和reference points作为下一层decoder layer的输入，再次进行计算更新，总共迭代6次。    
++ 每层更新的object queries和reference points作为下一层decoder layer的输入，再次进行计算更新，总共迭代 block_num 次。    
 
 -------------------------
 
