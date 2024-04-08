@@ -70,8 +70,8 @@ DETR3D 主要解决自动驾驶中的三维物体检测问题，还可以应用�
 所有的 object query由一个全连接网络预测出在BEV空间中的3D reference point坐标(x, y, z)，坐标经过sigmoid函数归一化（作为压缩函数，因为它的域是所有实数的集合，它的范围是(0,1)）后表示在空间中的`相对位置`。
 
 + 在每层layer之中，所有的object query之间做self-attention来相互交互获取全局信息并避免多个query收敛到同个物体。   
-object query再和图像特征之间做cross-attention：将每个query对应的3D reference point通过相机的内参外参投影到特征图图片坐标系（将reference point转为齐次坐标，通过相机参数矩阵转为2D中心点，特别注意的是，每个相机标定的参数矩阵都是不一样的，需要成对应的参数矩阵）
-利用线性插值来采样对应的multi-scale image features，如果投影坐标落在图片范围之外就补零，之后再用sampled image features去更新object queries。  
+object query再和图像特征之间做cross-attention：将每个query对应的3D reference point通过相机的内参外参投影到特征图图片坐标系（将reference point转为齐次坐标，通过相机参数矩阵转为2D中心点，特别注意的是，每个相机标定的参数矩阵都是不一样的，需要成对应的参数矩阵）      
+利用线性插值（双线性插值）来采样对应的multi-scale image features，如果投影坐标落在图片范围之外就补零，之后再用sampled image features去更新object queries。  
 
 + 经过attention更新后的object query通过两个MLP网络来分别预测对应物体的class和bounding box的参数。为了让网络更好的学习，我们每次都预测bounding box的中心坐标相对于reference points的offset (delta_x, delta_y, delta_z) 来更新reference points的坐标。
 
@@ -92,7 +92,8 @@ object query再和图像特征之间做cross-attention：将每个query对应的
 输出通过两个分支，`回归bbox信息`和`分类目标类别`
   
 * loss     
-采用detr 的set-to-set计算方式，对预测出的(回归, 分类)结果和GT的(回归, 分类)结果进行匹配。损失函数部分保持和 detr 一致。回归损失采用L1，分类损失使用focal loss。      
+采用detr 的set-to-set计算方式，对预测出的(回归, 分类)结果和GT的(回归, 分类)结果进行匹配。损失函数部分保持和 detr 一致。回归损失采用L1，分类损失使用focal loss。    
+损失函数的设计也主要受DETR的启发，我们在所有object queries预测出来的检测框和所有的ground-truth bounding box之间利用匈牙利算法进行二分图匹配，找到使得loss最小的最优匹配，并计算classification focal loss和L1 regression loss。        
 -------  
 
 * **优化点**  
