@@ -4,6 +4,6 @@ https://www.zhihu.com/question/521842610/answer/2431585901
 
 |分枝|说明|版本|    
 |----|----|----|   
-|BEVFormer v1.0| an initial version of BEVFormer(the base version). It achieves a baseline result of **51.7%** NDS on nuScenes. | 对应BEVFormer 论文   |      
-|BEVFormer v2.0| require less GPU memory than the base version. Please pull this repo to obtain the latest codes. 支持fp16| 对应BEVFormer 论文|                 
-|BEVFormer master| 需要detectron2 | 对应 BEVFormer v2 论文实现  |       
+|BEVFormer v1.0| an initial version of BEVFormer(the base version). It achieves a baseline result of **51.7%** NDS on nuScenes. | 对应BEVFormer 论文 <br>BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers  |      
+|BEVFormer v2.0| require less GPU memory than the base version. Please pull this repo to obtain the latest codes. 支持fp16| 对应BEVFormer 论文  <br>BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers |                 
+|BEVFormer master| 需要detectron2 | 对应 BEVFormer v2 论文实现 <br>BEVFormer v2: Adapting Modern Image Backbones to Bird's-Eye-View Recognition via Perspective Supervision |       
