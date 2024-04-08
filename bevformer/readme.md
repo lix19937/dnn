@@ -1,7 +1,8 @@
-https://github.com/fundamentalvision/BEVFormer    
+
 3D object detection and semantic map segmentation.     
 https://www.zhihu.com/question/521842610/answer/2431585901   
 
+https://github.com/fundamentalvision/BEVFormer    有3个分枝    
 |分枝|说明|版本|    
 |----|----|----|   
 |BEVFormer v1.0| an initial version of BEVFormer(the base version). It achieves a baseline result of **51.7%** NDS on nuScenes. | 对应BEVFormer 论文 <br>BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers  |      
