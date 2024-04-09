@@ -9,6 +9,9 @@ https://github.com/fundamentalvision/BEVFormer    有3个分枝
 |BEVFormer v2.0| require less GPU memory than the base version. Please pull this repo to obtain the latest codes. 支持fp16| 对应BEVFormer 论文  <br>BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers |                 
 |BEVFormer master| 需要detectron2 | 对应 BEVFormer v2 论文实现 <br>BEVFormer v2: Adapting Modern Image Backbones to Bird's-Eye-View Recognition via Perspective Supervision |       
 
+```shell
+python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./data/nuscenes --extra-tag nuscenes --version v1.0-mini --canbus ./data
+```
 bevformer-master    
 + pth2onnx
 
