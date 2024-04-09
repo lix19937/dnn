@@ -12,6 +12,10 @@ https://github.com/fundamentalvision/BEVFormer    有3个分枝
 ```shell
 python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./data/nuscenes --extra-tag nuscenes --version v1.0-mini --canbus ./data
 ```
+可能出现 `ModuleNotFoundError`问题，可见  
+https://github.com/open-mmlab/mmdetection3d/issues/2352#issuecomment-2044432207
+
+
 bevformer-master    
 + pth2onnx
 
