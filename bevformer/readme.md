@@ -16,6 +16,8 @@ python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./dat
 可能出现 `ModuleNotFoundError`问题，可见https://github.com/open-mmlab/mmdetection3d/issues/2352#issuecomment-2044432207
 
 ### 单机test 运行   
++ configs/bevformerv2/bevformerv2-r50-t1-base-24ep.py    
+
 ```shell
 ./tools/dist_test.sh  ./projects/configs/bevformerv2/bevformerv2-r50-t1-base-24ep.py ./ckpts/BEVFormerV2/bevformerv2-r50-t1-base/epoch_24.pth
 ```
