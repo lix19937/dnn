@@ -108,7 +108,7 @@ input_shapes = dict(
 > 在实际 infer 中，我们不进入obtain_history_bev，直接传入历史 prev_bev 集合，避免再计算。    
 
 + 对于 BEVFormerV2/extract_feat 函数
-  + 对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len() 由 `_num_mono_levels_` 控制
+  + 对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len() 由 `_num_mono_levels_` 控制。
   + 随后 img_feats 还会被 slice操作 `img_feats = img_feats[:self.num_levels]`，因此 如果 `_num_levels_ < _num_mono_levels_` ，则 extract_feat 存在冗余计算。
     
 > 可以单独导出 cnn 网络，分析计算图进行优化。          
@@ -116,7 +116,7 @@ input_shapes = dict(
 + 对于 BEVFormerV2/simple_test_pts 函数
   + 对上一步骤得到的 img_feats 以及历史帧的 prev_bev 进行 simple_test_pts(img_feats, img_metas, prev_bev)    
     + pts_bbox_head（BEVFormerHead/forward with only_bev=False, prev_bev!=None）
-      + PerceptionTransformerV2/forward，返回 bev_embed, inter_states, init_reference_points_out, inter_references_out    
+      + PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out` 。        
         + PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
         + PerceptionTransformerV2/decoder 得到 
           ```
@@ -132,7 +132,7 @@ input_shapes = dict(
               level_start_index=torch.tensor([0], device=query.device),
               **kwargs)
           ```
-        +   
+        + 计算 outputs_coord   
   + pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes）
 
 bevformer-master    
