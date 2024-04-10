@@ -156,7 +156,7 @@ input_shapes = dict(
         scores_3d torch.Size([300])
         labels_3d torch.Size([300])
         ```    
-      + 3.2.2 执行 `img_metas[i]['box_type_3d'](bboxes, code_size)`，此处后续可以固化       
+      + 3.2.2 执行 `img_metas[i]['box_type_3d'](bboxes, code_size)`，此处后续可以固化，直接选取mmdet3d.core.bbox.structures.lidar_box3d.LiDARInstance3DBoxes(bboxes, code_size)              
 
     
 bevformer-master    
