@@ -100,14 +100,14 @@ input_shapes = dict(
 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
 第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
 
-+ 对于 BEVFormerV2/obtain_history_bev 函数，对历史帧进行 extract_feat(cnn 网络，仅使用img作为输入)，接着进行(BEVFormerHead)pts_bbox_head @only_bev=True， 进入 (PerceptionTransformerV2) 的 get_bev_features 实质是 PerceptionTransformerBEVEncoder 的 forward，返回得到 bev_embed(prev_bev)。   
++ 对于 BEVFormerV2/obtain_history_bev 函数，对历史帧进行 extract_feat（cnn 网络，仅使用img作为输入），接着进行（BEVFormerHead forward）pts_bbox_head @only_bev=True， 即进入 （PerceptionTransformerV2） 的 get_bev_features （实质是 PerceptionTransformerBEVEncoder 的 forward），返回得到 bev_embed（prev_bev）。   
 在实际 infer 中，我们直接传入历史 prev_bev 集合，避免再计算。
 
-+ 对于 BEVFormerV2/extract_feat 函数，对当前帧进行 extract_feat(cnn 网络，仅使用img作为输入)，返回得到 img_feats 注意 len() 由 `_num_mono_levels_`控制，而最终
++ 对于 BEVFormerV2/extract_feat 函数，对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len() 由 `_num_mono_levels_`控制，而最终
 img_feats 还会被 slice操作 ` img_feats = img_feats[:self.num_levels]`，因此 如果 ` _num_levels_ < _num_mono_levels_ ` ，则 extract_feat 存在冗余计算。
 可以单独导出，分析计算图。         
 
-+ 对于 BEVFormerV2/simple_test_pts 函数，对上一步骤得到的 img_feats 以及 历史帧的 prev_bev 进行 simple_test_pts(img_feats, img_metas, prev_bev)， simple_test_pts包含两个步骤：(BEVFormerHead)pts_bbox_head 和 (BEVFormerHead)pts_bbox_head.get_bboxes
++ 对于 BEVFormerV2/simple_test_pts 函数，对上一步骤得到的 img_feats 以及 历史帧的 prev_bev 进行 simple_test_pts(img_feats, img_metas, prev_bev)， simple_test_pts包含两个步骤：（BEVFormerHead）pts_bbox_head 和 （BEVFormerHead）pts_bbox_head.get_bboxes
 
 bevformer-master    
 + pth2onnx
