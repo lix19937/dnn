@@ -119,19 +119,19 @@ input_shapes = dict(
       + PerceptionTransformerV2/forward，返回 bev_embed, inter_states, init_reference_points_out, inter_references_out    
         + PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
         + PerceptionTransformerV2/decoder 得到 
-        ```
-        inter_states, inter_references = self.decoder(
-            query=query,
-            key=None,
-            value=bev_embed,
-            query_pos=query_pos,
-            reference_points=reference_points,
-            reg_branches=reg_branches,
-            cls_branches=cls_branches,
-            spatial_shapes=torch.tensor([[bev_h, bev_w]], device=query.device),
-            level_start_index=torch.tensor([0], device=query.device),
-            **kwargs)
-        ```
+          ```
+          inter_states, inter_references = self.decoder(
+              query=query,
+              key=None,
+              value=bev_embed,
+              query_pos=query_pos,
+              reference_points=reference_points,
+              reg_branches=reg_branches,
+              cls_branches=cls_branches,
+              spatial_shapes=torch.tensor([[bev_h, bev_w]], device=query.device),
+              level_start_index=torch.tensor([0], device=query.device),
+              **kwargs)
+          ```
         +   
   + pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes）
 
