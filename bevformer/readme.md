@@ -100,7 +100,9 @@ input_shapes = dict(
 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
 第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
 
+对于 BEVFormerV2/obtain_history_bev 函数，对历史帧进行 extract_feat(cnn 网络，仅使用img作为输入)，接着进行(BEVFormerHead)pts_bbox_head @only_bev=True， 进入 (PerceptionTransformerV2)的get_bev_features 实质是 PerceptionTransformerBEVEncoder 的forward，返回得到 bev_embed(prev_bev)
 
+对于 BEVFormerV2/extract_feat 函数，对当前帧进行 extract_feat(cnn 网络，仅使用img作为输入)，返回得到 img_feats
 
 bevformer-master    
 + pth2onnx
