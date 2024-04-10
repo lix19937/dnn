@@ -39,6 +39,7 @@ input_shapes = dict(
 第1次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
 第k(k>1)次 infer, use_prev_bev=0, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
 
+img_metas 数据dump如下       
 ```
 dict_keys(['img_metas', 'img', 'ego2global_translation', 'ego2global_rotation', 'lidar2ego_translation', 'lidar2ego_rotation', 'timestamp'])
 
