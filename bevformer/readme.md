@@ -137,9 +137,9 @@ input_shapes = dict(
           
 > 这一步最终返回
 > outs = {     
->          'bev_embed': bev_embed,    
->           'all_cls_scores': outputs_classes,    
->           'all_bbox_preds': outputs_coords     
+>           'bev_embed': bev_embed,               # [[bev_h*bev_w, batch_size, embedding_dim]    
+>           'all_cls_scores': outputs_classes,    # [num_camera, batch_size, num_query, num_classes]    
+>           'all_bbox_preds': outputs_coords      # [num_camera, batch_size, num_query, code_size]    
 >         }     
 > 包含了encoder + decoder，计算量巨大，重点优化。      
 
