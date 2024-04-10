@@ -22,23 +22,6 @@ python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./dat
 ./tools/dist_test.sh  ./projects/configs/bevformerv2/bevformerv2-r50-t1-base-24ep.py ./ckpts/BEVFormerV2/bevformerv2-r50-t1-base/epoch_24.pth
 ```
 
-```
-model()/forward -> forward_test -> simple_test -> extract_feat(img) (@cnn) -> extract_img_feat      
-                                                      | -> simple_test_pts (@transformer)  
-```
-
-在 infer阶段， extract_feat 不使用 img_metas 数据     
-```
-input_shapes = dict(
-    image   =[batch_size, cameras, 3, img_h, img_w],  # 
-    prev_bev=[bev_h*bev_w, batch_size, embed_dim],    # [40000, 1, 256]
-    use_prev_bev=[1],
-    lidar2img=[batch_size, cameras, 4, 4],
-)
-```
-第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
-第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
-
 img_metas 数据dump如下       
 ```
 dict_keys(['img_metas', 'img', 'ego2global_translation', 'ego2global_rotation', 'lidar2ego_translation', 'lidar2ego_rotation', 'timestamp'])
@@ -99,6 +82,25 @@ lidar2ego_rotation ==== <class 'list'>   1   <class 'list'>
 timestamp ==== <class 'list'>   1   <class 'torch.Tensor'> 
  tensor([1.5332e+09], dtype=torch.float64)
 ```
+
+```
+model()/forward -> forward_test -> simple_test -> extract_feat(img) (@cnn) -> extract_img_feat      
+                                                      | -> simple_test_pts (@transformer)  
+```
+
+在 infer阶段， extract_feat 不使用 img_metas 数据     
+```
+input_shapes = dict(
+    image   =[batch_size, cameras, 3, img_h, img_w],  # 
+    prev_bev=[bev_h*bev_w, batch_size, embed_dim],    # [40000, 1, 256]
+    use_prev_bev=[1],
+    lidar2img=[batch_size, cameras, 4, 4],
+)
+```
+第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
+第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
+
+
 
 bevformer-master    
 + pth2onnx
