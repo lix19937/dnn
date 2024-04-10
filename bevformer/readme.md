@@ -60,13 +60,13 @@ ego2global_translation ==== <class 'list'>   1   <class 'list'>
 
 ego2global_rotation ==== <class 'list'>   1   <class 'list'> 
  [tensor([-0.9687], dtype=torch.float64), 
- tensor([-0.0040], dtype=torch.float64), 
- tensor([-0.0077], dtype=torch.float64), 
- tensor([0.2482],  dtype=torch.float64)]
+ tensor([-0.0040],  dtype=torch.float64), 
+ tensor([-0.0077],  dtype=torch.float64), 
+ tensor([0.2482],   dtype=torch.float64)]
 
 lidar2ego_translation ==== <class 'list'>   1   <class 'list'> 
  [tensor([0.9858], dtype=torch.float64), 
-  tensor([0.],         dtype=torch.float64), 
+  tensor([0.],     dtype=torch.float64), 
   tensor([1.8402], dtype=torch.float64)]
 
 lidar2ego_rotation ==== <class 'list'>   1   <class 'list'> 
