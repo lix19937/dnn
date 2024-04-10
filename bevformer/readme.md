@@ -100,25 +100,25 @@ input_shapes = dict(
 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
 第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
 
-+ 对于 BEVFormerV2/obtain_history_bev 函数    
-  + 对历史帧进行 extract_feat（cnn 网络，仅使用img作为输入）   
-  + 接着进行pts_bbox_head（BEVFormerHead/forward with only_bev=True）    
-    + 进入 PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），返回得到 bev_embed（prev_bev）。
++ 1 对于 BEVFormerV2/obtain_history_bev 函数    
+  + 1.1 对历史帧进行 extract_feat（cnn 网络，仅使用img作为输入）   
+  + 1.2 接着进行pts_bbox_head（BEVFormerHead/forward with only_bev=True）    
+    + 1.2.1 进入 PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），返回得到 bev_embed（prev_bev）。
  
 > 在实际 infer 中，我们不进入obtain_history_bev，直接传入历史 prev_bev 集合，避免再计算。    
 
-+ 对于 BEVFormerV2/extract_feat 函数
-  + 对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len(img_feats) 由 `_num_mono_levels_` 控制。
-  + 随后 img_feats 还会被 slice操作 `img_feats = img_feats[:self.num_levels]`，因此 如果 `_num_levels_ < _num_mono_levels_` ，则 extract_feat 存在冗余计算。
++ 2 对于 BEVFormerV2/extract_feat 函数
+  + 2.1 对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len(img_feats) 由 `_num_mono_levels_` 控制。
+  + 2.2 随后 img_feats 还会被 slice操作 `img_feats = img_feats[:self.num_levels]`，因此 如果 `_num_levels_ < _num_mono_levels_` ，则 extract_feat 存在冗余计算。
     
 > 可以单独导出 cnn 网络，分析计算图进行优化。          
 
-+ 对于 BEVFormerV2/simple_test_pts 函数     
++ 3 对于 BEVFormerV2/simple_test_pts 函数     
 使用上一步骤得到的 img_feats 以及历史帧的 prev_bev 进行 simple_test_pts(img_feats, img_metas, prev_bev)    
-    + pts_bbox_head（BEVFormerHead/forward with only_bev=False, prev_bev!=None）
-      + PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out` 。        
-        + PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
-        + PerceptionTransformerV2/decoder 得到 
+    + 3.1 pts_bbox_head（BEVFormerHead/forward with only_bev=False, prev_bev!=None）
+      + 3.1.1 PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out` 。        
+        + 3.1.1.1 PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
+        + 3.1.1.2 PerceptionTransformerV2/decoder 得到 
           ```
           inter_states, inter_references = self.decoder(
               query=query,
@@ -132,18 +132,17 @@ input_shapes = dict(
               level_start_index=torch.tensor([0], device=query.device),
               **kwargs)
           ```
-        + 计算 outputs_coord with reg_branches    
-        + 计算 outputs_class with cls_branches
+        + 3.1.1.3 计算 outputs_coord with reg_branches    
+        + 3.1.1.4 计算 outputs_class with cls_branches      
           
-> 这一步最终返回
-> outs = {     
-> &emsp;&emsp;&emsp;'bev_embed': bev_embed,&emsp;&emsp;&emsp;   # [bev_h*bev_w, batch_size, embedding_dim]    
-> &emsp;&emsp;&emsp;'all_cls_scores': outputs_classes,&ensp;    # [num_camera, batch_size, num_query, num_classes]    
-> &emsp;&emsp;&emsp;'all_bbox_preds': outputs_coords            # [num_camera, batch_size, num_query, code_size]    
->         }     
-> 包含了encoder + decoder，计算量巨大，重点优化。
-
-    + pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes），基于预测点生成bbox（LiDARInstance3DBoxes坐标系）    
+  > 这一步最终返回
+  > outs = {     
+  > &emsp;&emsp;&emsp;'bev_embed': bev_embed,&emsp;&emsp;&emsp;   # [bev_h*bev_w, batch_size, embedding_dim]    
+  > &emsp;&emsp;&emsp;'all_cls_scores': outputs_classes,&ensp;    # [num_camera, batch_size, num_query, num_classes]    
+  > &emsp;&emsp;&emsp;'all_bbox_preds': outputs_coords            # [num_camera, batch_size, num_query, code_size]    
+  >         }     
+  > 包含了encoder + decoder，计算量巨大，重点优化。    
+    + 3.2 pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes），基于预测点生成bbox（LiDARInstance3DBoxes坐标系）    
 
     
 bevformer-master    
