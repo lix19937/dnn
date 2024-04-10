@@ -36,8 +36,8 @@ input_shapes = dict(
     lidar2img=[batch_size, cameras, 4, 4],
 )
 ```
-第1次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
-第k(k>1)次 infer, use_prev_bev=0, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
+第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
+第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
 
 img_metas 数据dump如下       
 ```
