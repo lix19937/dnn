@@ -141,7 +141,7 @@ input_shapes = dict(
 >           'all_cls_scores': outputs_classes,    
 >           'all_bbox_preds': outputs_coords     
 >         }     
-> 中含了encoder + decoder，计算量巨大，重点优化。      
+> 包含了encoder + decoder，计算量巨大，重点优化。      
 
   + pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes）
 
