@@ -24,7 +24,7 @@ python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./dat
 model()/forward -> forward_test -> simple_test -> extract_feat (cnn) -> extract_img_feat      
                                                       | -> simple_test_pts (transformer)  
 ```
- 
+在 infer阶段， extract_feat 不使用 img_metas 数据    
 
 ```
 dict_keys(['img_metas', 'img', 'ego2global_translation', 'ego2global_rotation', 'lidar2ego_translation', 'lidar2ego_rotation', 'timestamp'])
