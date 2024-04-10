@@ -135,11 +135,12 @@ input_shapes = dict(
         + 计算 outputs_coord with reg_branches    
         + 计算 outputs_class with cls_branches
           
-> 这一步最终返回 outs = {
->             'bev_embed': bev_embed,
->             'all_cls_scores': outputs_classes,
->             'all_bbox_preds': outputs_coords
->         }
+> 这一步最终返回
+> outs = {     
+>        'bev_embed': bev_embed,    
+>         'all_cls_scores': outputs_classes,    
+>         'all_bbox_preds': outputs_coords     
+>         }     
 > 中含了encoder + decoder，计算量巨大，重点优化。      
 
   + pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes）
