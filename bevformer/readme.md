@@ -100,7 +100,7 @@ input_shapes = dict(
 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
 第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
 
-+ 对于 BEVFormerV2/obtain_history_bev 函数，对历史帧进行 extract_feat（cnn 网络，仅使用img作为输入），接着进行（BEVFormerHead forward with only_bev=True）pts_bbox_head， 即进入（PerceptionTransformerV2）的 get_bev_features （实质是 PerceptionTransformerBEVEncoder 的 forward），返回得到 bev_embed（prev_bev）。   
++ 对于 BEVFormerV2/obtain_history_bev 函数，对历史帧进行 extract_feat（cnn 网络，仅使用img作为输入），接着进行（BEVFormerHead forward with only_bev=True）pts_bbox_head， 即进入 PerceptionTransformerV2 的 get_bev_features （实质是 PerceptionTransformerBEVEncoder 的 forward），返回得到 bev_embed（prev_bev）。   
 在实际 infer 中，我们直接传入历史 prev_bev 集合，避免再计算。
 
 + 对于 BEVFormerV2/extract_feat 函数，对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len() 由 `_num_mono_levels_`控制，而最终
