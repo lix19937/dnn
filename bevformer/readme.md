@@ -94,7 +94,8 @@ input_shapes = dict(
     image   =[batch_size, cameras, 3, img_h, img_w],  # 
     prev_bev=[bev_h*bev_w, batch_size, embed_dim],    # [40000, 1, 256]
     use_prev_bev=[1],
-    lidar2img=[batch_size, cameras, 4, 4],
+    lidar2img=[batch_size, cameras, 4, 4]
+  # img_shape=[img_h, img_w] # 作为attribute 传入   
 )
 ```
 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
