@@ -21,7 +21,7 @@ python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./dat
 ```
 
 ```
-model()/forward -> forward_test -> simple_test -> extract_feat (cnn)   
+model()/forward -> forward_test -> simple_test -> extract_feat (cnn)  -> extract_img_feat      
                                                       | -> simple_test_pts (transformer)  
 ```
  
