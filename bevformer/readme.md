@@ -20,8 +20,10 @@ python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./dat
 ./tools/dist_test.sh  ./projects/configs/bevformerv2/bevformerv2-r50-t1-base-24ep.py ./ckpts/BEVFormerV2/bevformerv2-r50-t1-base/epoch_24.pth
 ```
 
-`model() -> forward_test -> simple_test -> extract_feat    
-                                             -> simple_test_pts`
+```
+model() -> forward_test -> simple_test -> extract_feat    
+                                             | -> simple_test_pts
+```
  
 
 ```
