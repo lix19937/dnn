@@ -108,7 +108,7 @@ input_shapes = dict(
 > 在实际 infer 中，我们不进入obtain_history_bev，直接传入历史 prev_bev 集合，避免再计算。    
 
 + 对于 BEVFormerV2/extract_feat 函数
-  + 对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len() 由 `_num_mono_levels_` 控制。
+  + 对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len(img_feats) 由 `_num_mono_levels_` 控制。
   + 随后 img_feats 还会被 slice操作 `img_feats = img_feats[:self.num_levels]`，因此 如果 `_num_levels_ < _num_mono_levels_` ，则 extract_feat 存在冗余计算。
     
 > 可以单独导出 cnn 网络，分析计算图进行优化。          
