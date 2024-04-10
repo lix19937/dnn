@@ -146,8 +146,8 @@ input_shapes = dict(
       + 3.2.1 bbox_coder.decode（NMSFreeCoder/decode）会进行topK的过滤（k取自于 max_num）
       ```py   
       all_bbox_preds torch.Size([6, 1, 900, 10])
-      cls_scores torch.Size([1, 900, 10]) bbox_preds torch.Size([1, 900, 10])
-      cls_scores torch.Size([900, 10]), bbox_preds torch.Size([900, 10])
+      cls_scores torch.Size([1, 900, 10])
+      bbox_preds torch.Size([1, 900, 10])
       score_threshold None, max_num 300
  
       bboxes.shape torch.Size([300, 9]), code_size 9
