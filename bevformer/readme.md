@@ -142,7 +142,9 @@ input_shapes = dict(
   > &emsp;&emsp;&emsp;'all_bbox_preds': outputs_coords            # [num_camera, batch_size, num_query, code_size]    
   >         }     
   > 包含了encoder + decoder，计算量巨大，重点优化。    
-    + 3.2 pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes），基于预测点生成bbox（LiDARInstance3DBoxes坐标系）    
+    + 3.2 pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes），基于预测点生成bbox（LiDARInstance3DBoxes坐标系）
+      + 3.2.1 bbox_coder.decode（NMSFreeCoder/decode）会进行topK的过滤（k取自于 max_num）   
+      + 3.2.2 执行 `img_metas[i]['box_type_3d'](bboxes, code_size)`，此处后续可以固化       
 
     
 bevformer-master    
