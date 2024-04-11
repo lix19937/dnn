@@ -125,7 +125,24 @@ input_shapes = dict(
     + 3.1 pts_bbox_head（BEVFormerHead/forward with only_bev=False, prev_bev!=None）
       + 3.1.1 PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out`。        
         + 3.1.1.1 PerceptionTransformerV2/get_bev_features（实质是encoder，PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
-        + 3.1.1.2 PerceptionTransformerV2/decoder 得到 
+        + 3.1.1.2 当前 bev_embed 与历史 prev_bev 进行融合，计算query, query_pos, reference_points, bev_embed      
+          ```
+          bev_embed = [x.reshape(x.shape[0], bev_h, bev_w, x.shape[-1]).permute(0, 3, 1, 2).contiguous() for x in prev_bev]
+          bev_embed = self.fusion(bev_embed)
+  
+          bs = mlvl_feats[0].size(0)
+          query_pos, query = torch.split(object_query_embed, self.embed_dims, dim=1)
+          query_pos = query_pos.unsqueeze(0).expand(bs, -1, -1)
+          query = query.unsqueeze(0).expand(bs, -1, -1)
+          reference_points = self.reference_points(query_pos)
+          reference_points = reference_points.sigmoid()
+          init_reference_out = reference_points
+  
+          query = query.permute(1, 0, 2)
+          query_pos = query_pos.permute(1, 0, 2)
+          bev_embed = bev_embed.permute(1, 0, 2)
+          ```
+        + 3.1.1.3 PerceptionTransformerV2/decoder 得到 
           ```
           inter_states, inter_references = self.decoder(
               query=query,
