@@ -122,8 +122,8 @@ input_shapes = dict(
 + 3 对于 BEVFormerV2/simple_test_pts 函数     
 使用步骤2 得到的 img_feats 以及历史帧的 **prev_bev** 进行 simple_test_pts(img_feats, img_metas, prev_bev)    
     + 3.1 pts_bbox_head（BEVFormerHead/forward with only_bev=False, prev_bev!=None）
-      + 3.1.1 PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out` 。        
-        + 3.1.1.1 PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
+      + 3.1.1 PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out`。        
+        + 3.1.1.1 PerceptionTransformerV2/get_bev_features（实质是encoder，PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
         + 3.1.1.2 PerceptionTransformerV2/decoder 得到 
           ```
           inter_states, inter_references = self.decoder(
