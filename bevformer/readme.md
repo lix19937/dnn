@@ -156,8 +156,8 @@ input_shapes = dict(
               level_start_index=torch.tensor([0], device=query.device),
               **kwargs)
           ```
-        + 3.1.1.3 计算 outputs_coord with reg_branches    
-        + 3.1.1.4 计算 outputs_class with cls_branches      
+        + 3.1.1.4 计算 outputs_coord with reg_branches    
+        + 3.1.1.5 计算 outputs_class with cls_branches      
           
   > 注意：这一步最终返回
   > outs = {     
