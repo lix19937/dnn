@@ -15,7 +15,8 @@ python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./dat
 ```
 可能出现 `ModuleNotFoundError`问题，可见https://github.com/open-mmlab/mmdetection3d/issues/2352#issuecomment-2044432207
 
-### 单机train 运行   
+### 单机train 运行    
+
 forward_mono_train/fcos3d_bbox_head        
 `透视监督`是优化BEV模型的关键。在Bevformer V2中，我们通过一个辅助透视损失引入透视监督。 具体地说，在主干上构建透视3D检测头，以检测透视图中的目标对象。 我们采用FCOS3D-类似的检测头，它预测3D包围盒的中心位置、大小、方向和投影中心度。     
 
@@ -119,7 +120,7 @@ input_shapes = dict(
 > 注意：可以单独导出 cnn 网络，分析计算图进行优化。          
 
 + 3 对于 BEVFormerV2/simple_test_pts 函数     
-使用上一步骤得到的 img_feats 以及历史帧的 prev_bev 进行 simple_test_pts(img_feats, img_metas, prev_bev)    
+使用上一步骤得到的 img_feats 以及历史帧的 **prev_bev** 进行 simple_test_pts(img_feats, img_metas, prev_bev)    
     + 3.1 pts_bbox_head（BEVFormerHead/forward with only_bev=False, prev_bev!=None）
       + 3.1.1 PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out` 。        
         + 3.1.1.1 PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
