@@ -104,8 +104,9 @@ input_shapes = dict(
   # img_shape=[img_h, img_w] # 作为attribute 传入   
 )
 ```
-第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与运算, 得到 prev_bev_`1`    
-第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与运算, 得到 prev_bev_`k`     
+
+> 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与fusion 运算, 得到 prev_bev_`1`    
+> 第 k (k>1) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 参与 fusion 运算, 得到 prev_bev_`k`     
 
 + **1 对于 BEVFormerV2/obtain_history_bev 函数**        
   + 1.1 对历史帧进行 extract_feat（cnn 网络，仅使用img作为输入）   
