@@ -15,7 +15,8 @@ python tools/create_data.py nuscenes --root-path ./data/nuscenes --out-dir ./dat
 ```
 可能出现 `ModuleNotFoundError`问题，可见https://github.com/open-mmlab/mmdetection3d/issues/2352#issuecomment-2044432207
 
-### 单机train 运行    
+### 单机train 运行     
+![bevformerv2-2loss](https://github.com/lix19937/dnn-cookbook/assets/38753233/b9b12088-ad9f-4bb8-91b7-21a412b5241e)      
 
 forward_mono_train/fcos3d_bbox_head        
 `透视监督`是优化BEV模型的关键。在Bevformer V2中，我们通过一个辅助透视损失引入透视监督。 具体地说，在主干上构建透视3D检测头，以检测透视图中的目标对象。 我们采用FCOS3D-类似的检测头，它预测3D包围盒的中心位置、大小、方向和投影中心度。     
