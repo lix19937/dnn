@@ -146,16 +146,16 @@ input_shapes = dict(
   > img_metas 未参与计算
   
     + 3.2 pts_bbox_head.get_bboxes（BEVFormerHead/get_bboxes），基于预测点生成bbox（LiDARInstance3DBoxes坐标系）
-      + 3.2.1 bbox_coder.decode（NMSFreeCoder/decode）会进行topK的过滤（k取自于 max_num）
+      + 3.2.1 bbox_coder.decode（NMSFreeCoder/decode）会进行topK的过滤（k取自于 max_num，一般比num_query 要小）   
         ```py   
         all_bbox_preds torch.Size([6, 1, 900, 10])
-        cls_scores torch.Size([1, 900, 10])
+        cls_scores torch.Size([1, 900, 10]) # num_query = 900 
         bbox_preds torch.Size([1, 900, 10])
         score_threshold None, max_num 300
    
         bboxes.shape torch.Size([300, 9]), code_size 9
         new_prev_bev torch.Size([40000, 1, 256])
-        boxes_3d  torch.Size([300, 9])
+        boxes_3d  torch.Size([300, 9]) # max_num = 300  
         scores_3d torch.Size([300])
         labels_3d torch.Size([300])
         ```    
