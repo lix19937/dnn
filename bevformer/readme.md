@@ -143,7 +143,7 @@ input_shapes = dict(
           bev_embed = bev_embed.permute(1, 0, 2)
           ```
         + 3.1.1.3 PerceptionTransformerV2/decoder 得到 
-          ```
+          ```py
           inter_states, inter_references = self.decoder(
               query=query,
               key=None,
