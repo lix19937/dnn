@@ -105,11 +105,11 @@ input_shapes = dict(
 )
 ```
 
-> 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值/随机值, 不参与fusion 运算, 得到 prev_bev_`1`
-> 第 2 次 infer, use_prev_bev=1, prev_bev 使用 prev_bev_`1`,  与当前帧的bev_feature 一起参与fusion 运算, 得到 bev_embed, 并返回当前帧的bev_feature    
-> 第 k (k>2) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 与当前帧的bev_feature 一起参与 fusion 运算, 得到 bev_embed, 并返回当前帧的bev_feature        
-> 条件分支的onnx 进行验证 https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#export-pytorch-example     
-> `@torch.jit.script` 导出 onnx   
+> 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值, 不参与fusion 运算, 得到当前帧的bev_feature_1, 参与后续decoder 运算, 并返回 bev_feature_1     
+> 第 2 次 infer, use_prev_bev=1, prev_bev 使用 prev_bev_`1`,  与当前帧的bev_feature_2 一起参与fusion 运算, 得到 bev_embed, 参与后续decoder 运算, 返回 bev_feature_2     
+> 第 k (k>2) 次 infer, use_prev_bev=1, prev_bev 使用prev_bev_`k-1`, 与当前帧的bev_feature_k 一起参与 fusion 运算, 得到 bev_embed, 参与后续decoder 运算, 返回 bev_feature_k             
+> 条件分支的onnx 进行验证 https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#export-pytorch-example      
+> `@torch.jit.script` 导出 onnx      
 
 ![bevformerv-bev_feature](https://github.com/lix19937/dnn-cookbook/assets/38753233/fcbfc7d9-be5d-498c-80d3-c2abd3da9885)     
 
