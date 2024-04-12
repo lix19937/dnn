@@ -105,11 +105,11 @@ input_shapes = dict(
 )
 ```
 
-> 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值, 不参与fusion 运算, 计算当前帧的 bev_feature, 记作bev_feature_1, 参与后续decoder 运算, 并返回 bev_feature_1     
+> 第 1 次 infer, use_prev_bev=0, prev_bev 使用默认值, 不参与fusion 运算, 计算当前帧的 bev_feature, 记作 bev_feature_1, 参与后续decoder 运算, 并返回 bev_feature_1     
 > 
-> 第 2 次 infer, use_prev_bev=1, prev_bev 使用默认值, 不参与fusion 运算, 计算当前帧的 bev_feature, 记作bev_feature_2, 参与后续decoder 运算, 并返回 bev_feature_2     
+> 第 2 次 infer, use_prev_bev=1, prev_bev 使用默认值, 不参与fusion 运算, 计算当前帧的 bev_feature, 记作 bev_feature_2, 参与后续decoder 运算, 并返回 bev_feature_2     
 >    
-> 第 k (k>2) 次 infer, use_prev_bev=1, 计算当前帧的 bev_feature, 记作bev_feature_k, prev_bev 使用 [bev_feature_1, bev_feature_2], 并与当前帧的bev_feature_k 一起参与 fusion 运算, 得到 bev_embed, 参与后续decoder 运算, 返回 bev_feature_k      
+> 第 k (k>2) 次 infer, use_prev_bev=1, 计算当前帧的 bev_feature, 记作 bev_feature_k, prev_bev 使用 [bev_feature_1, bev_feature_2], 并与当前帧的bev_feature_k 组合形成 `[bev_feature_1, bev_feature_2, bev_feature_k]`, 参与 fusion 运算, 得到 bev_embed, 参与后续decoder 运算, 返回 bev_feature_k      
 >         
 > 条件分支的onnx 进行验证 https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#export-pytorch-example      
 > `@torch.jit.script` 导出 onnx      
