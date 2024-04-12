@@ -116,7 +116,7 @@ input_shapes = dict(
   + 1.2 接着进行pts_bbox_head（BEVFormerHead/forward with only_bev=True）    
     + 1.2.1 进入 PerceptionTransformerV2/get_bev_features （实质是 PerceptionTransformerBEVEncoder/forward），返回得到 bev_embed（prev_bev）。
  
-> 注意：在实际 infer 中，我们不进入obtain_history_bev，直接传入历史 prev_bev 集合，避免再计算。    
+> 注意：在实际 infer 中，我们不进入 obtain_history_bev，直接传入历史 prev_bev 集合，避免再计算。    
 
 + **2 对于 BEVFormerV2/extract_feat 函数**    
   + 2.1 对当前帧进行 extract_feat（cnn 网络，仅使用img作为输入），返回得到 img_feats 注意 len(img_feats) 由 `_num_mono_levels_` 控制。
@@ -129,7 +129,7 @@ input_shapes = dict(
     + 3.1 pts_bbox_head（BEVFormerHead/forward with only_bev=False, prev_bev!=None）
       + 3.1.1 PerceptionTransformerV2/forward，返回 `bev_embed, inter_states, init_reference_points_out, inter_references_out`。        
         + 3.1.1.1 PerceptionTransformerV2/get_bev_features（实质是encoder，PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
-        + 3.1.1.2 当前 bev_embed 与历史 prev_bev 进行**融合**，计算query, query_pos, reference_points, bev_embed      
+        + 3.1.1.2 当前 bev_embed 与历史 prev_bev 进行**融合**得到新的 bev_embed，计算query, query_pos, reference_points, bev_embed      
           ```py
           bev_embed_m = [x.reshape(x.shape[0], bev_h, bev_w, x.shape[-1]).permute(0, 3, 1, 2).contiguous() for x in prev_bev]
           bev_embed = self.fusion(bev_embed_m) # ResNetFusion   bev_embed_m [(1, embedding_dim, bev_h, bev_w), (1, embedding_dim, bev_h, bev_w)]
