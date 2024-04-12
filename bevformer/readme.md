@@ -131,6 +131,7 @@ input_shapes = dict(
         + 3.1.1.1 PerceptionTransformerV2/get_bev_features（实质是encoder，PerceptionTransformerBEVEncoder/forward），得到 bev_embed（prev_bev）。
         + 3.1.1.2 当前 bev_embed 与历史 prev_bev 进行**融合**得到新的 bev_embed，计算query, query_pos, reference_points, bev_embed      
           ```py
+          # 注意：prev_bev 包含了 历史prev_bev 和 当前 bev_embed  
           bev_embed_m = [x.reshape(x.shape[0], bev_h, bev_w, x.shape[-1]).permute(0, 3, 1, 2).contiguous() for x in prev_bev]
           bev_embed = self.fusion(bev_embed_m) # ResNetFusion   bev_embed_m [(1, embedding_dim, bev_h, bev_w), (1, embedding_dim, bev_h, bev_w)]
   
