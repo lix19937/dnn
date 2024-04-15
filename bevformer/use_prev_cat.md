@@ -18,7 +18,6 @@ def test():
     kernel_data = torch.randn(256, 768, 3, 3)
     bias_data = torch.randn(256)
 
-
     x1 = torch.randn(1, 768, 200, 200)
     x1[:, 0:512, :, :] = 0
     x2 = x1[:, 512:, :, :]
