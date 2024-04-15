@@ -110,15 +110,13 @@ input_shapes = dict(
 > 第 2 次 infer, use_prev_bev=1, prev_bev 使用默认值, 不参与fusion 运算, 计算当前帧的 bev_feature, 记作 bev_feature_2, 参与后续decoder 运算, 并返回 bev_feature_2     
 >    
 > 第 k (k>2) 次 infer, use_prev_bev=1, 计算当前帧的 bev_feature, 记作 bev_feature_k, prev_bev 使用 [bev_feature_1, bev_feature_2], 并与当前帧的bev_feature_k 组合形成 `[bev_feature_1, bev_feature_2, bev_feature_k]`, 参与 fusion 运算, 得到 bev_embed, 参与后续decoder 运算, 返回 bev_feature_k      
->         
+>
+> fusion 运算主要是残差块运算
+>  
 > 条件分支的onnx 进行验证 https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#export-pytorch-example      
 > `@torch.jit.script` 导出 onnx      
 
 ![bevformerv-bev_feature](https://github.com/lix19937/dnn-cookbook/assets/38753233/fcbfc7d9-be5d-498c-80d3-c2abd3da9885)     
-
-
-> 迂回方案
-> 
 
 
 + **1 对于 BEVFormerV2/obtain_history_bev 函数**        
