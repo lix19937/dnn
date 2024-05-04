@@ -85,8 +85,28 @@ print('returncode:', ret)
 # trtexec  --verbose --onnx=./positional_encoding.onnx --dumpProfile
 
 # https://github.com/zw0610/zw0610.github.io
-
 # https://www.stubbornhuang.com/2962/
 
 # https://onnxruntime.ai/docs/reference/compatibility.html#onnx-opset-support   
 # https://mmdetection.readthedocs.io/en/v2.14.0/_modules/mmdet/models/utils/positional_encoding.html
+
+'''
+Warning: Constant folding - Only steps=1 can be constant folded for opset >= 10 onnx::Slice op. Constant folding not applied.
+Warning: Constant folding - Only steps=1 can be constant folded for opset >= 10 onnx::Slice op. Constant folding not applied.
+Traceback (most recent call last):
+  File "./tools/test.py", line 290, in <module>
+    main()
+  File "./tools/test.py", line 267, in main
+    torch.onnx.export(
+  File "/home/lix/anaconda3/envs/bevformer-v2/lib/python3.8/site-packages/torch/onnx/__init__.py", line 275, in export
+    return utils.export(model, args, f, export_params, verbose, training,
+  File "/home/lix/anaconda3/envs/bevformer-v2/lib/python3.8/site-packages/torch/onnx/utils.py", line 88, in export
+    _export(model, args, f, export_params, verbose, training, input_names, output_names,
+  File "/home/lix/anaconda3/envs/bevformer-v2/lib/python3.8/site-packages/torch/onnx/utils.py", line 689, in _export
+    _model_to_graph(model, args, verbose, input_names,
+  File "/home/lix/anaconda3/envs/bevformer-v2/lib/python3.8/site-packages/torch/onnx/utils.py", line 463, in _model_to_graph
+    graph = _optimize_graph(graph, operator_export_type,
+  File "/home/lix/anaconda3/envs/bevformer-v2/lib/python3.8/site-packages/torch/onnx/utils.py", line 223, in _optimize_graph
+    torch._C._jit_pass_onnx_graph_shape_type_inference(graph, params_dict, _export_onnx_opset_version)
+RuntimeError: unexpected tensor scalar type
+'''
