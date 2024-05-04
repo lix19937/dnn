@@ -1,6 +1,8 @@
 
 # models/utils/positional_encoding.py
 
+# https://zhuanlan.zhihu.com/p/633836459   
+
 import torch
 
 from mmdet.models.utils.positional_encoding import LearnedPositionalEncoding
