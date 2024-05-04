@@ -63,9 +63,9 @@ sess = ort.InferenceSession(output_file_poly)
 outputs = sess.run(None, {'input': bev_mask.detach().numpy()})
 t3 = outputs[0]
 
-print(t1==t2)
+print((t1==t2).all())
 print("\n-----------------------\n")
-print(t2==t3)
+print((t3==t2).all())
 
 ########################
 output_file_poly_sp = 'positional_encoding_poly_sp.onnx' 
@@ -85,3 +85,4 @@ print('returncode:', ret)
 # https://www.stubbornhuang.com/2962/
 
 # https://onnxruntime.ai/docs/reference/compatibility.html#onnx-opset-support   
+# https://mmdetection.readthedocs.io/en/v2.14.0/_modules/mmdet/models/utils/positional_encoding.html
