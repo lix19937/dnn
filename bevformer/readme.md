@@ -120,6 +120,7 @@ input_shapes = dict(
 
 ![bevformerv-bev_feature](https://github.com/lix19937/dnn-cookbook/assets/38753233/fcbfc7d9-be5d-498c-80d3-c2abd3da9885)     
 
+bevformerV2.py  -->  bevformer_head.py  -->  transformerV2.py   -->  encoder.py  --> decoder.py     
 
 + **1 对于 BEVFormerV2/obtain_history_bev 函数**        
   + 1.1 对历史帧进行 extract_feat（cnn 网络，仅使用img作为输入）   
