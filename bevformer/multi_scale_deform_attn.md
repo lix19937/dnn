@@ -1,8 +1,7 @@
 mmcv/ops/multi_scale_deform_attn.py 中的 F.grid_sample onnx 不支持 
 采用 
 from   
-```
-
+```py
 sampling_value_l_ = F.grid_sample(
     value_l_,
     sampling_grid_l_,
@@ -34,7 +33,7 @@ from
     y = y.view(n, -1)
 ```
 to 
-```
+```py
     x = x.contiguous().view(n, -1)  # view
     y = y.contiguous().view(n, -1)
 ```
