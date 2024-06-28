@@ -7,6 +7,13 @@
 
 ```
 
+```
+[05/24/2024-15:52:50] [E] Error[2]: [shuffleBuilder.cpp::writeGlob::154] Error Code 2: Internal Error (Assertion outputScalesLen >= quantizations.outputs[0].scale.count() failed. )
+[05/24/2024-15:52:50] [E] Error[2]: [builder.cpp::buildSerializedNetwork::743] Error Code 2: Internal Error (Assertion engine != nullptr failed. )
+[05/24/2024-15:52:50] [E] Engine could not be created from network
+
+```
+
 + original version
 ```
 temporal_self_attention.py  
