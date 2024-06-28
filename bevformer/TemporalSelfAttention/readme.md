@@ -6,7 +6,7 @@ temporal_self_attention.py
 export_temporal_self_attention.py   // 模型导出脚本
 
 trt8510   
-trtexec --onnx=tsa_msda_poly.onnx --verbose --best --separateProfileRun --useCudaGraph --dumpProfile
+trtexec --onnx=tsa_msda_poly.onnx --verbose --best --separateProfileRun --useCudaGraph --dumpProfile 2>&1 |tee v1.log
 
 ```
 
@@ -17,6 +17,6 @@ temporal_self_attention_plugin_bk.py  // 和 temporal_self_attention.py 无差�
 export_temporal_self_attention_plugin.py // 模型导出脚本
 
 trt8510   
-trtexec --onnx=tsa_msda_plugin_poly.onnx --verbose --best --separateProfileRun --useCudaGraph --dumpProfile
+trtexec --onnx=tsa_msda_plugin_poly.onnx --verbose --best --separateProfileRun --useCudaGraph --dumpProfile 2>&1 |tee v2.log
  
 ```
