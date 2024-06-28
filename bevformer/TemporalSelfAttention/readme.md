@@ -1,5 +1,12 @@
 ### 在 trt8510 存在转换问题， 将高维matmul + permute + reshape 进行降维处理    
 
+```
+[06/19/2024-19:11:27] [E] Error[2]: [reformatBuilder.cpp::writeGlob::165] Error Code 2: Internal Error (Assertion inputScalesLen >= quantizations.inputs[0].scale.count() failed. )
+[06/19/2024-19:11:27] [E] Error[2]: [builder.cpp::buildSerializedNetwork::743] Error Code 2: Internal Error (Assertion engine != nullptr failed. )
+[06/19/2024-19:11:27] [E] Engine could not be created from network
+
+```
+
 + original version
 ```
 temporal_self_attention.py  
